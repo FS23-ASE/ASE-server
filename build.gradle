@@ -37,7 +37,10 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'mysql:mysql-connector-java:8.0.27'
+    
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'com.amazonaws:aws-java-sdk-rds:1.11.726'
+    runtimeOnly 'mysql:mysql-connector-java'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
