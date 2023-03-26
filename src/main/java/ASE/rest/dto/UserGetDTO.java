@@ -8,6 +8,16 @@ public class UserGetDTO {
     private String password;
     private long id;
     private String email;
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
 
     public long getId() {
         return id;

@@ -64,6 +64,11 @@ public class UserService {
           user.setUsername(userinput.getUsername());
       if(userinput.getEmail()!=null)
           user.setEmail(userinput.getEmail());
+      if(userinput.getPassword()!=null)
+          user.setEmail(userinput.getPassword());
+      if(userinput.getAddress()!=null)
+          user.setAddress(userinput.getAddress());
+
       return user;
   }
 
