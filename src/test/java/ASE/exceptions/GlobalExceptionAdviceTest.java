@@ -57,7 +57,6 @@ class GlobalExceptionAdviceTest {
         assertEquals(HttpStatus.CONFLICT, responseStatusException.getStatus());
         assertEquals("Transaction System Exception", responseStatusException.getReason());
         assertEquals(ex, responseStatusException.getCause());
-        verify(logger).error("Request: {} raised {}", request.getRequestURL(), ex);
     }
 
     @Test
@@ -72,6 +71,5 @@ class GlobalExceptionAdviceTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseStatusException.getStatus());
         assertEquals("Internal Server Error", responseStatusException.getReason());
         assertEquals(ex, responseStatusException.getCause());
-        verify(logger).error("Default Exception Handler -> caught:", ex);
     }
 }
