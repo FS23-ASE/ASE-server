@@ -32,6 +32,7 @@ public class BookService {
     }
 
     public Book createBook(Book newBook) {
+        newBook.setStatus(true);
         newBook = bookRepository.save(newBook);
         bookRepository.flush();
 
