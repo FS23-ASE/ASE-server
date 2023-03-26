@@ -9,9 +9,9 @@ public class BookGetDTO {
     private String publisher;
     private String description;
     private Boolean status;
-    private long seller_id;
+    private long sellerid;
     private String author;
-    private long buyer_id;
+    private long buyerid;
     private Blob image;
 
     public Blob getImage() {
@@ -30,20 +30,20 @@ public class BookGetDTO {
         this.status = status;
     }
 
-    public long getBuyer_id() {
-        return buyer_id;
+    public long getBuyerid() {
+        return buyerid;
     }
 
-    public void setBuyer_id(long buyer_id) {
-        this.buyer_id = buyer_id;
+    public void setBuyerid(long buyerid) {
+        this.buyerid = buyerid;
     }
 
-    public long getSeller_id() {
-        return seller_id;
+    public long getSellerid() {
+        return sellerid;
     }
 
-    public void setSeller_id(long seller_id) {
-        this.seller_id = seller_id;
+    public void setSellerid(long sellerid) {
+        this.sellerid = sellerid;
     }
 
     public Long getId() {

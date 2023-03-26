@@ -5,6 +5,7 @@ import ASE.rest.dto.UserPostDTO;
 import ASE.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,9 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -73,7 +76,7 @@ public class UserControllerTest {
         UserPostDTO userPostDTO = new UserPostDTO();
         userPostDTO.setUsername("testUsername");
 
-        given(userService.createUser(Mockito.any())).willReturn(user);
+        given(userService.createUser(any())).willReturn(user);
 
         // when/then -> do the request + validate the result
         MockHttpServletRequestBuilder postRequest = post("/users")
@@ -102,7 +105,7 @@ public class UserControllerTest {
         UserPostDTO duplicateUserPostDTO = new UserPostDTO();
         duplicateUserPostDTO.setUsername("testUsername");
 
-        given(userService.createUser(Mockito.any())).willThrow(
+        given(userService.createUser(any())).willThrow(
                 new ResponseStatusException(HttpStatus.CONFLICT, "The username already exists."));
 
         // when/then -> do the request + validate the result
@@ -196,6 +199,29 @@ public class UserControllerTest {
         mockMvc.perform(getRequest)
                 .andExpect(status().isNotFound());
     }
+    @Test
+    public void checkPassword_validInput() throws Exception {
+        // given
+        UserPostDTO userPostDTO = new UserPostDTO();
+        userPostDTO.setUsername("testuser");
+        userPostDTO.setPassword("testpassword");
+        User user = new User();
+        user.setId(1L);
+        user.setUsername("testuser");
+        given(userService.UserLogin(any(User.class))).willReturn(user);
+
+        // when/then -> do the request + validate the result
+        MockHttpServletRequestBuilder postRequest = post("/users/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(userPostDTO));
+
+        // then
+        mockMvc.perform(postRequest)
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id", is(user.getId().intValue())))
+                .andExpect(jsonPath("$.username", is(user.getUsername())));
+    }
+
 
 
 

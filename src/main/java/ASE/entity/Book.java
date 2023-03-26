@@ -30,9 +30,9 @@ public class Book implements Serializable {
     @Column(nullable = true)
     private Blob image;
     @Column(nullable = false)
-    private long seller_id;
+    private long sellerid;
     @Column(nullable = true)
-    private long buyer_id;
+    private long buyerid;
 
     public Blob getImage() {
         return image;
@@ -42,20 +42,20 @@ public class Book implements Serializable {
         this.image = image;
     }
 
-    public long getSeller_id() {
-        return seller_id;
+    public long getSellerid() {
+        return sellerid;
     }
 
-    public void setSeller_id(long seller_id) {
-        this.seller_id = seller_id;
+    public void setSellerid(long seller_id) {
+        this.sellerid = seller_id;
     }
 
-    public long getBuyer_id() {
-        return buyer_id;
+    public long getBuyerid() {
+        return buyerid;
     }
 
-    public void setBuyer_id(long buyer_id) {
-        this.buyer_id = buyer_id;
+    public void setBuyerid(long buyerid) {
+        this.buyerid = buyerid;
     }
 
     public String getPublisher() {

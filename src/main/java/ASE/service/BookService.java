@@ -18,31 +18,35 @@ import java.util.UUID;
 @Transactional
 public class BookService {
 
-  private final Logger log = LoggerFactory.getLogger(BookService.class);
+    private final Logger log = LoggerFactory.getLogger(BookService.class);
 
-  private final BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
-  @Autowired
-  public BookService(@Qualifier("bookRepository") BookRepository bookRepository) {
-    this.bookRepository = bookRepository;
-  }
+    @Autowired
+    public BookService(@Qualifier("bookRepository") BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
-  public List<Book> getBooks() {
-    return this.bookRepository.findAll();
-  }
+    public List<Book> getBooks() {
+        return this.bookRepository.findAll();
+    }
 
-  public Book createBook(Book newBook) {
-    newBook = bookRepository.save(newBook);
-    bookRepository.flush();
+    public Book createBook(Book newBook) {
+        newBook = bookRepository.save(newBook);
+        bookRepository.flush();
 
-    log.debug("Created Information for Book: {}", newBook);
-    return newBook;
-  }
+        log.debug("Created Information for Book: {}", newBook);
+        return newBook;
+    }
 
-  public Book getBookbyid(long id){
-      Book book=bookRepository.findById(id);
-      return book;
-  }
+    public Book getBookbyid(long id) {
+        Book book = bookRepository.findById(id);
+        return book;
+    }
+
+    public List<Book> getBookBySeller(long sellerid) {
+        return this.bookRepository.findBySellerid(sellerid);
+    }
 
 //  public Book update(Book book, Book bookinput){
 //

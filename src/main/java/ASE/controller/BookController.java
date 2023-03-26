@@ -1,8 +1,10 @@
 package ASE.controller;
 
 import ASE.entity.Book;
+import ASE.entity.User;
 import ASE.rest.dto.BookGetDTO;
 import ASE.rest.dto.BookPostDTO;
+import ASE.rest.dto.UserGetDTO;
 import ASE.rest.mapper.DTOMapper;
 import ASE.service.BookService;
 import org.springframework.http.HttpStatus;
@@ -61,6 +63,21 @@ public class BookController {
         // convert internal representation of book back to API
         return DTOMapper.INSTANCE.convertEntityToBookGetDTO(createdBook);
     }
+
+    @GetMapping("/books/seller/{seller_id}")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public List<BookGetDTO> getBookBySeller(@PathVariable("seller_id") long seller_id){
+        List<Book> books = bookService.getBookBySeller(seller_id);
+        List<BookGetDTO> bookGetDTOs = new ArrayList<>();
+
+        for (Book book : books) {
+            bookGetDTOs.add(DTOMapper.INSTANCE.convertEntityToBookGetDTO(book));
+        }
+        return bookGetDTOs;
+    }
+
+
 
 
 

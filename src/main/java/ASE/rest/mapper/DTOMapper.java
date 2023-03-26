@@ -25,7 +25,6 @@ public interface DTOMapper {
 
     DTOMapper INSTANCE = Mappers.getMapper(DTOMapper.class);
 
-    @Mapping(source = "id", target = "id")
     @Mapping(source = "username", target = "username")
     @Mapping(source = "password", target = "password")
     @Mapping(source = "email", target = "email")
@@ -39,15 +38,14 @@ public interface DTOMapper {
     UserGetDTO convertEntityToUserGetDTO(User user);
 
 
-    @Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")
     @Mapping(source = "author", target = "author")
     @Mapping(source = "description", target = "description")
     @Mapping(source = "publisher", target = "publisher")
     @Mapping(source = "status", target = "status")
     @Mapping(source = "image", target = "image")
-    @Mapping(source = "seller_id", target = "seller_id")
-    @Mapping(source = "buyer_id", target = "buyer_id")
+    @Mapping(source = "sellerid", target = "sellerid")
+    @Mapping(source = "buyerid", target = "buyerid")
     Book convertBookPostDTOtoEntity(BookPostDTO bookPostDTO);
 
     @Mapping(source = "id", target = "id")
@@ -57,8 +55,8 @@ public interface DTOMapper {
     @Mapping(source = "publisher", target = "publisher")
     @Mapping(source = "status", target = "status")
     @Mapping(source = "image", target = "image")
-    @Mapping(source = "seller_id", target = "seller_id")
-    @Mapping(source = "buyer_id", target = "buyer_id")
+    @Mapping(source = "sellerid", target = "sellerid")
+    @Mapping(source = "buyerid", target = "buyerid")
     BookGetDTO convertEntityToBookGetDTO(Book book);
 
 }

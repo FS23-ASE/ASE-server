@@ -1,6 +1,7 @@
 package ASE.controller;
 
 import ASE.entity.Book;
+import ASE.rest.dto.BookGetDTO;
 import ASE.rest.dto.BookPostDTO;
 import ASE.service.BookService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -16,6 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -166,6 +168,33 @@ public class BookControllerTest {
         // then
         mockMvc.perform(getRequest)
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testGetBookBySeller() throws Exception {
+        // Set up
+        long seller_id = 1L;
+        Book book1 = new Book();
+        book1.setName("book1");
+        book1.setSellerid(seller_id);
+        Book book2 = new Book();
+        book2.setName("book2");
+        book2.setSellerid(seller_id);
+        List<Book> books = new ArrayList<>();
+        books.add(book1);
+        books.add(book2);
+
+        given(bookService.getBookBySeller(Mockito.anyLong())).willReturn(books);
+
+        // when/then -> do the request + validate the result
+        MockHttpServletRequestBuilder getRequest = get("/books/seller/1")
+                .contentType(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(getRequest)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name", is(book1.getName())));
+
+
     }
 
 
