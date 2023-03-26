@@ -46,7 +46,7 @@ public interface DTOMapper {
     @Mapping(source = "description", target = "description")
     @Mapping(source = "publisher", target = "publisher")
     @Mapping(source = "status", target = "status")
-    @Mapping(source = "image", target = "image")
+    //@Mapping(source = "image", target = "image")
     @Mapping(source = "sellerid", target = "sellerid")
     @Mapping(source = "buyerid", target = "buyerid")
     Book convertBookPostDTOtoEntity(BookPostDTO bookPostDTO);
@@ -57,7 +57,7 @@ public interface DTOMapper {
     @Mapping(source = "description", target = "description")
     @Mapping(source = "publisher", target = "publisher")
     @Mapping(source = "status", target = "status")
-    @Mapping(source = "image", target = "image")
+    //@Mapping(source = "image", target = "image")
     @Mapping(source = "sellerid", target = "sellerid")
     @Mapping(source = "buyerid", target = "buyerid")
     BookGetDTO convertEntityToBookGetDTO(Book book);

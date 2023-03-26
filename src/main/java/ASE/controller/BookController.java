@@ -13,6 +13,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.Base64;
 
 @RestController
 public class BookController {
@@ -54,9 +57,11 @@ public class BookController {
     @PostMapping("/books")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public BookGetDTO createBook(@RequestBody BookPostDTO bookPostDTO) {
+    public BookGetDTO createBook(@RequestBody BookPostDTO bookPostDTO) throws SQLException {
         // convert API book to internal representation
         Book bookInput = DTOMapper.INSTANCE.convertBookPostDTOtoEntity(bookPostDTO);
+        if (bookPostDTO.getImagestring() != null)
+            bookInput.setImage(convertBase64ToBlob(bookPostDTO.getImagestring()));
 
         // create book
         Book createdBook = bookService.createBook(bookInput);
@@ -67,7 +72,7 @@ public class BookController {
     @GetMapping("/books/seller/{seller_id}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public List<BookGetDTO> getBookBySeller(@PathVariable("seller_id") long seller_id){
+    public List<BookGetDTO> getBookBySeller(@PathVariable("seller_id") long seller_id) {
         List<Book> books = bookService.getBookBySeller(seller_id);
         List<BookGetDTO> bookGetDTOs = new ArrayList<>();
 
@@ -78,7 +83,17 @@ public class BookController {
     }
 
 
-
+    public Blob convertBase64ToBlob(String base64String) throws SQLException {
+        byte[] decodedBytes = Base64.getDecoder().decode(base64String);
+        Blob blob = null;
+        try {
+            blob = new javax.sql.rowset.serial.SerialBlob(decodedBytes);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return blob;
+    }
 
 
 //    @PutMapping("/books/{id}")
@@ -95,9 +110,6 @@ public class BookController {
 //            bookService.update(book, bookInput);
 //        }
 //    }
-
-
-
 
 
 }

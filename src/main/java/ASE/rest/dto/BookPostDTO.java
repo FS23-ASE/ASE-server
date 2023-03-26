@@ -12,6 +12,15 @@ public class BookPostDTO {
     private String author;
     private long buyerid;
     private Blob image;
+    private String imagestring;
+
+    public String getImagestring() {
+        return imagestring;
+    }
+
+    public void setImagestring(String imagestring) {
+        this.imagestring = imagestring;
+    }
 
     public Blob getImage() {
         return image;
