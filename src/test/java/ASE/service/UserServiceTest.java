@@ -1,6 +1,5 @@
 package ASE.service;
 
-import ASE.entity.Book;
 import ASE.entity.User;
 import ASE.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -111,10 +110,38 @@ public class UserServiceTest {
 
 
     @Test
-    void getUserbyid() {
+    public void testGetUserById() {
+        // given
+        long id = 1L;
+        User user = new User();
+        when(userRepository.findById(id)).thenReturn(user);
+
+        // when
+        User result = userService.getUserbyid(id);
+
+        // then
+        assertEquals(user, result);
+        verify(userRepository, times(1)).findById(id);
     }
 
     @Test
-    void update() {
+    public void testUpdateUser() {
+        // create a User object to update
+        User user = new User();
+        user.setUsername("johndoe");
+        user.setEmail("johndoe@example.com");
+
+        // create a User object with updated data
+        User userToUpdate = new User();
+        userToUpdate.setUsername("janedoe");
+        userToUpdate.setEmail("janedoe@example.com");
+
+        // call the update method
+        User updatedUser = userService.update(user, userToUpdate);
+
+        // check that the updated User object has the correct values
+        assertEquals(updatedUser.getUsername(), "janedoe");
+        assertEquals(updatedUser.getEmail(), "janedoe@example.com");
     }
 }
+
