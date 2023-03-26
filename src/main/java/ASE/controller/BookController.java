@@ -69,10 +69,10 @@ public class BookController {
         return DTOMapper.INSTANCE.convertEntityToBookGetDTO(createdBook);
     }
 
-    @GetMapping("/books/seller/{seller_id}")
+    @GetMapping("/books/seller/{sellerid}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public List<BookGetDTO> getBookBySeller(@PathVariable("seller_id") long seller_id) {
+    public List<BookGetDTO> getBookBySeller(@PathVariable("sellerid") long seller_id) {
         List<Book> books = bookService.getBookBySeller(seller_id);
         List<BookGetDTO> bookGetDTOs = new ArrayList<>();
 
