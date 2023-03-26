@@ -211,7 +211,7 @@ public class UserControllerTest {
         given(userService.UserLogin(any(User.class))).willReturn(user);
 
         // when/then -> do the request + validate the result
-        MockHttpServletRequestBuilder postRequest = post("/users/login")
+        MockHttpServletRequestBuilder postRequest = put("/users/login")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(userPostDTO));
 

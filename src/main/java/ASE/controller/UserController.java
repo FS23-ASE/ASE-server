@@ -72,7 +72,7 @@ public class UserController {
     }
 
 
-    @PostMapping("/users/login")
+    @PutMapping("/users/login")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public User checkPassword(@RequestBody UserPostDTO userPostDTO) {
