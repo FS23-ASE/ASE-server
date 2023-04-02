@@ -9,13 +9,19 @@ import ASE.rest.mapper.DTOMapper;
 import ASE.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.sql.rowset.serial.SerialBlob;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.Base64;
+
 
 @RestController
 public class BookController {
@@ -25,6 +31,7 @@ public class BookController {
     BookController(BookService bookService) {
         this.bookService = bookService;
     }
+    private final Logger log = LoggerFactory.getLogger(BookService.class);
 
     @GetMapping("/books")
     @ResponseStatus(HttpStatus.OK)
@@ -60,15 +67,44 @@ public class BookController {
     public BookGetDTO createBook(@RequestBody BookPostDTO bookPostDTO) throws SQLException {
         // convert API book to internal representation
         Book bookInput = DTOMapper.INSTANCE.convertBookPostDTOtoEntity(bookPostDTO);
-        if (bookPostDTO.getImagestring() != null)
-            bookInput.setImage(convertBase64ToBlob(bookPostDTO.getImagestring()));
+        log.debug("Created Information for: {}", bookInput);
+//
+//        byte[] bytes = Base64.getDecoder().decode(bookPostDTO.getImage());
+//        Blob imageBlob = new SerialBlob(bytes);
+//
+//        bookInput.setImage(imageBlob);
 
-        // create book
         Book createdBook = bookService.createBook(bookInput);
+
         // convert internal representation of book back to API
         return DTOMapper.INSTANCE.convertEntityToBookGetDTO(createdBook);
     }
 
+
+//    @PostMapping("/books")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    @ResponseBody
+//    public BookGetDTO createBook(@RequestParam("name") String name,
+//                                 @RequestParam("author") String author,
+//                                 @RequestParam("description") String description,
+//                                 @RequestParam("publisher") String publisher,
+//                                 @RequestParam("sellerid") Long sellerid,
+//                                 @RequestParam("image") MultipartFile image) throws SQLException, IOException {
+//        // convert API book to internal representation
+//        if (true) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Can't find book!");
+//        }
+//        Book bookInput = new Book(name, author, description, publisher, sellerid);
+//        log.debug("Created Information for User: {}", bookInput);
+//
+//        byte[] bytes = image.getBytes();
+//        Blob imageBlob = new SerialBlob(bytes);
+//        bookInput.setImage(imageBlob);
+//
+//        Book createdBook = bookService.createBook(bookInput);
+//        // convert internal representation of book back to API
+//        return DTOMapper.INSTANCE.convertEntityToBookGetDTO(createdBook);
+//    }
     @GetMapping("/books/seller/{sellerid}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
@@ -110,6 +146,12 @@ public class BookController {
 //            bookService.update(book, bookInput);
 //        }
 //    }
+
+    public void excep(String x) {
+        if (true) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, x);
+        }
+    }
 
 
 }

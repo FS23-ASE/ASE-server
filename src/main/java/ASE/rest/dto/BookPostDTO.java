@@ -1,5 +1,7 @@
 package ASE.rest.dto;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.sql.Blob;
 
 public class BookPostDTO {
@@ -11,24 +13,37 @@ public class BookPostDTO {
     private long sellerid;
     private String author;
     private long buyerid;
-    private Blob image;
-    private String imagestring;
 
-    public String getImagestring() {
-        return imagestring;
-    }
-
-    public void setImagestring(String imagestring) {
-        this.imagestring = imagestring;
-    }
-
-    public Blob getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(String image) {
         this.image = image;
     }
+
+    private String image;
+
+
+//    @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "@class")
+//    private Blob image;
+//    private String imagestring;
+//
+//    public String getImagestring() {
+//        return imagestring;
+//    }
+//
+//    public void setImagestring(String imagestring) {
+//        this.imagestring = imagestring;
+//    }
+//
+//    public Blob getImage() {
+//        return image;
+//    }
+//
+//    public void setImage(Blob image) {
+//        this.image = image;
+//    }
 
     public Boolean getStatus() {
         return status;

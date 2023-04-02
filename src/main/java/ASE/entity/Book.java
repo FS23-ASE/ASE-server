@@ -105,4 +105,17 @@ public class Book implements Serializable {
     public void setStatus(Boolean status) {
         this.status = status;
     }
+
+
+    public Book(String name, String author, String description, String publisher, Long sellerid) {
+        this.name = name;
+        this.author = author;
+        this.description = description;
+        this.publisher = publisher;
+        this.sellerid = sellerid;
+    }
+
+    public Book(){
+
+    }
 }

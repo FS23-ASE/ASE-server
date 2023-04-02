@@ -12,7 +12,7 @@ public class BookGetDTO {
     private long sellerid;
     private String author;
     private long buyerid;
-    private Blob image;
+    private String image;
     private String imagestring;
 
     public String getImagestring() {
@@ -23,11 +23,11 @@ public class BookGetDTO {
         this.imagestring = imagestring;
     }
 
-    public Blob getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
