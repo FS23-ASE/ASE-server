@@ -94,6 +94,6 @@ public interface DTOMapper {
     @Mapping(source = "books", target = "books")
     @Mapping(source = "quantity", target = "quantity")
     @Mapping(source = "price", target = "price")
-    @Mapping(source = "userId", target = "userId")
+    //@Mapping(source = "userId", target = "userId")
     CartGetDTO convertEntityToCartGetDTO(Cart cart);
 }
