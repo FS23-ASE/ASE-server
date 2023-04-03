@@ -1,11 +1,9 @@
 package ASE.rest.mapper;
 
+import ASE.entity.Cart;
 import ASE.entity.User;
 import ASE.entity.Book;
-import ASE.rest.dto.BookGetDTO;
-import ASE.rest.dto.BookPostDTO;
-import ASE.rest.dto.UserGetDTO;
-import ASE.rest.dto.UserPostDTO;
+import ASE.rest.dto.*;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
@@ -86,4 +84,16 @@ public interface DTOMapper {
             return bytes.toString();
     }
 
+
+    @Mapping(source = "books", target = "books")
+    @Mapping(source = "quantity", target = "quantity")
+    @Mapping(source = "price", target = "price")
+    @Mapping(source = "userId", target = "userId")
+    Cart convertCartPostDTOtoEntity(CartPostDTO cartPostDTO);
+
+    @Mapping(source = "books", target = "books")
+    @Mapping(source = "quantity", target = "quantity")
+    @Mapping(source = "price", target = "price")
+    @Mapping(source = "userId", target = "userId")
+    CartGetDTO convertEntityToCartGetDTO(Cart cart);
 }
