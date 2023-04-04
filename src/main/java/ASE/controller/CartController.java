@@ -25,7 +25,7 @@ public class CartController {
         return DTOMapper.INSTANCE.convertEntityToCartGetDTO(cart);
     }
 
-    @PostMapping("/{userId}")
+    @PostMapping("/{userId}/{bookId}")
     public void addBookToCart(@PathVariable Long userId, @RequestBody Book book) {
         cartService.addBookToCart(userId, book);
     }
