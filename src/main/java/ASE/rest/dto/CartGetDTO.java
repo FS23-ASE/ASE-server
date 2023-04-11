@@ -12,7 +12,7 @@ public class CartGetDTO {
     private Long id;
     private List<Book> books;
     private int quantity;
-    private double price;
+    private double prices;
     private Long userId;
 
     public Long getId() {
@@ -39,19 +39,19 @@ public class CartGetDTO {
         this.quantity=quantity;
     }
 
-    public double getPrice(){
-        return price;
+    public double getPrices(){
+        return prices;
     }
 
-    public void setPrice(double price){
-        this.price=price;
+    public void setPrices(double prices){
+        this.prices=prices;
     }
 
-    public long getUser(){
+    public long getUserId(){
         return userId;
     }
 
-    public void setUser(long userId){
+    public void setUserId(long userId){
         this.userId=userId;
     }
 }

@@ -28,8 +28,8 @@ public class CartService {
         this.cartRepository = cartRepository;
     }
 
-    public List<Book> getBooks() {
-        return this.cartRepository.findAllBook();
+    public List<Book> getBooks(long userId) {
+        return this.cartRepository.findByUserId(userId).getBooks();
     }
 
     public void addBookToCart(long cartId, Book book) {
@@ -38,13 +38,13 @@ public class CartService {
         cartRepository.save(cart);
     }
 
-    public Cart getCartbyid(long id) {
+    public Cart getCartById(long id) {
         Cart cart = cartRepository.findById(id);
         return cart;
     }
 
     public Cart getCartByUserId(long userId) {
-        return this.cartRepository.findByUser(userId);
+        return this.cartRepository.findByUserId(userId);
     }
 
     public void deleteBookFromCart(long cartId, long bookId) {

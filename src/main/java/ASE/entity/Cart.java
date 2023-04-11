@@ -11,7 +11,6 @@ public class Cart implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    //a
     @OneToMany
     private List<Book> books;
 
@@ -19,9 +18,9 @@ public class Cart implements Serializable {
     private int quantity;
 
     @Column(nullable = false)
-    private double price;
+    private double prices;
 
-    @OneToOne
+
     private Long userId;
 
     public Cart() {
@@ -51,12 +50,12 @@ public class Cart implements Serializable {
         this.quantity=quantity;
     }
 
-    public double getPrice(){
-        return price;
+    public double getPrices(){
+        return prices;
     }
 
-    public void setPrice(double price){
-        this.price=price;
+    public void setPrices(double prices){
+        this.prices=prices;
     }
 
     public Long getUserId(){
