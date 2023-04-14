@@ -7,9 +7,9 @@ import java.util.List;
 @Entity
 @Table(name = "CART")
 public class Cart implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue
     private Long id;
     @ManyToMany
     private List<Book> books;
@@ -20,7 +20,7 @@ public class Cart implements Serializable {
     @Column(nullable = false)
     private double prices;
 
-
+    @Column(nullable = false)
     private Long userId;
 
     public Cart() {
