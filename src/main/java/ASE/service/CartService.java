@@ -19,21 +19,22 @@ import java.util.List;
 @Service
 @Transactional
 public class CartService {
-    private final Logger log = LoggerFactory.getLogger(BookService.class);
+    private final Logger log = LoggerFactory.getLogger(CartService.class);
 
     private final CartRepository cartRepository;
+    private final BookRepository bookRepository;
 
     @Autowired
-    public CartService(@Qualifier("cartRepository") CartRepository cartRepository) {
+    public CartService(@Qualifier("cartRepository") CartRepository cartRepository,
+                       BookRepository bookRepository) {
         this.cartRepository = cartRepository;
+        this.bookRepository = bookRepository;
     }
 
-    public List<Book> getBooks(long userId) {
-        return this.cartRepository.findByUserId(userId).getBooks();
-    }
 
-    public void addBookToCart(long cartId, Book book) {
+    public void addBookToCart(long cartId, long bookid) {
         Cart cart = cartRepository.findById(cartId);
+        Book book = bookRepository.findById(bookid);
         cart.getBooks().add(book);
         cartRepository.save(cart);
     }

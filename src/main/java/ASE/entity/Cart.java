@@ -11,7 +11,7 @@ public class Cart implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    @OneToMany
+    @ManyToMany
     private List<Book> books;
 
     @Column(nullable = false)
