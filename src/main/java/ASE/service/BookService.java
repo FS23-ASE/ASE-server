@@ -49,12 +49,12 @@ public class BookService {
         return this.bookRepository.findBySellerid(sellerid);
     }
 
-//  public Book update(Book book, Book bookinput){
-//
-//      if(bookinput.getStatus()!=null)
-//          book.setStatus(bookinput.getStatus());
-//      return book;
-//  }
+  public void update(Book book, Book bookinput){
 
-
+      if(bookinput.getImage() != null){
+          String updateImage = bookinput.getImage();
+          book.setImage(bookinput.getImage());
+      }
+      bookRepository.save(book);
+  }
 }

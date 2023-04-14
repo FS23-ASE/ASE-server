@@ -49,21 +49,8 @@ public interface DTOMapper {
     @Mapping(source = "status", target = "status")
     @Mapping(source = "sellerid", target = "sellerid")
     @Mapping(source = "buyerid", target = "buyerid")
-    @Mapping(source = "image", target = "image", qualifiedByName = "mapToBlob")
+    @Mapping(target = "image", ignore = true)
     Book convertBookPostDTOtoEntity(BookPostDTO bookPostDTO);
-
-    @Named("mapToBlob")
-    public default Blob mapToBlob(String bytes) throws SQLException {
-        if (bytes == null) {
-            return null;
-        }
-        try {
-            return new SerialBlob(bytes.getBytes());
-        }
-        catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "name", target = "name")
@@ -73,22 +60,14 @@ public interface DTOMapper {
     @Mapping(source = "status", target = "status")
     @Mapping(source = "sellerid", target = "sellerid")
     @Mapping(source = "buyerid", target = "buyerid")
-    @Mapping(source = "image", target = "image", qualifiedByName = "mapToString")
+    @Mapping(source = "image", target = "image")
     BookGetDTO convertEntityToBookGetDTO(Book book);
-
-
-    @Named("mapToString")
-    public default String mapToString(Blob bytes) throws SQLException {
-        if (bytes == null) return null;
-        else
-            return bytes.toString();
-    }
 
 
     @Mapping(source = "books", target = "books")
     @Mapping(source = "quantity", target = "quantity")
     @Mapping(source = "prices", target = "prices")
-    @Mapping(source = "userId", target = "userId")
+    //@Mapping(source = "userId", target = "userId")
     Cart convertCartPostDTOtoEntity(CartPostDTO cartPostDTO);
 
     @Mapping(source = "books", target = "books")

@@ -38,7 +38,7 @@ public class CartService {
         cartRepository.save(cart);
     }
 
-    public Cart getCartById(long id) {
+    public Cart getCartbyid(long id) {
         Cart cart = cartRepository.findById(id);
         return cart;
     }
