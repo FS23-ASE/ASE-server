@@ -19,18 +19,18 @@ public class CartController {
         this.cartService = cartService;
     }
 
-    @GetMapping("/{userId}")
-    public CartGetDTO getCartByUserId(@PathVariable Long userId) {
+    @GetMapping("/cart/{userId}")
+    public CartGetDTO getCartByUserId(@PathVariable("userId") Long userId) {
         Cart cart = cartService.getCartByUserId(userId);
         return DTOMapper.INSTANCE.convertEntityToCartGetDTO(cart);
     }
 
-    @PostMapping("/{userId}/{bookId}")
-    public void addBookToCart(@PathVariable Long userId, @RequestBody Book book) {
-        cartService.addBookToCart(userId, book);
+    @PostMapping("/cart/{userId}/{bookId}")
+    public void addBookToCart(@PathVariable Long userId, @RequestBody Long bookId) {
+        cartService.addBookToCart(userId, bookId);
     }
 
-    @DeleteMapping("/{userId}/{bookId}")
+    @DeleteMapping("/cart/{userId}/{bookId}")
     public void deleteBookFromCart(@PathVariable Long userId, @PathVariable Long bookId) {
         cartService.deleteBookFromCart(userId, bookId);
     }
