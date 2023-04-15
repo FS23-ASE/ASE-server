@@ -11,6 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class CartController {
     private final CartService cartService;
@@ -49,6 +52,20 @@ public class CartController {
         Cart createdCart = cartService.createCart(cartInput);
         // convert internal representation of user back to API
         return DTOMapper.INSTANCE.convertEntityToCartGetDTO(createdCart);
+    }
+
+    @GetMapping("/cart/books/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public List<BookGetDTO> getBooks(@PathVariable("userId") long userId) {
+        Cart cart = cartService.getCartByUserId(userId);
+        List<Book> books = cart.getBooks();
+        List<BookGetDTO> bookGetDTOs = new ArrayList<>();
+
+        for (Book book : books) {
+            bookGetDTOs.add(DTOMapper.INSTANCE.convertEntityToBookGetDTO(book));
+        }
+        return bookGetDTOs;
     }
 
 
