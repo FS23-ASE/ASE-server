@@ -33,9 +33,11 @@ public class CartService {
     }
 
 
-    public void addBookToCart(long cartId, long bookid) {
-        Cart cart = cartRepository.findById(cartId);
+    public void addBookToCart(long userId, long bookid) {
+        Cart cart = cartRepository.findByUserId(userId);
         Book book = bookRepository.findById(bookid);
+        cart.setPrices(cart.getPrices()+book.getPrice());
+        cart.setQuantity(cart.getQuantity()+1);
         cart.getBooks().add(book);
         cartRepository.save(cart);
     }
