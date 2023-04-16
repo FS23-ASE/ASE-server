@@ -25,13 +25,44 @@ public class Book implements Serializable {
     private String publisher;
     @Column(nullable = true)
     private String description;
-    @Lob
     @Column(nullable = true)
     private String image;
     @Column(nullable = false)
     private long sellerid;
     @Column(nullable = true)
     private long buyerid;
+    @Column(nullable = false)
+    private float price;
+    @Column(nullable = true)
+    private String category;
+
+    public Book(String name, String author, String description, String publisher, Long sellerid) {
+        this.name = name;
+        this.author = author;
+        this.description = description;
+        this.publisher = publisher;
+        this.sellerid = sellerid;
+    }
+
+    public Book() {
+
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String getImage() {
         return image;
@@ -103,18 +134,5 @@ public class Book implements Serializable {
 
     public void setStatus(Boolean status) {
         this.status = status;
-    }
-
-
-    public Book(String name, String author, String description, String publisher, Long sellerid) {
-        this.name = name;
-        this.author = author;
-        this.description = description;
-        this.publisher = publisher;
-        this.sellerid = sellerid;
-    }
-
-    public Book(){
-
     }
 }

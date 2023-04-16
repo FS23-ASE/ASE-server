@@ -13,6 +13,24 @@ public class BookPostDTO {
     private long sellerid;
     private String author;
     private long buyerid;
+    private float price;
+    private String category;
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String getImage() {
         return image;

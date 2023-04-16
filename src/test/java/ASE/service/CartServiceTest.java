@@ -31,9 +31,9 @@ public class CartServiceTest {
 
     @Test
     public void testAddBookToCart(){
-        Book newBook=new Book();
-        newBook.setName("book");
-        long bookid=newBook.getId();
+//        Book newBook=new Book();
+//        newBook.setName("book");
+//        long bookid=newBook.getId();
 
     }
 

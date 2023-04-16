@@ -1,5 +1,6 @@
 package ASE.rest.dto;
 
+import javax.persistence.Column;
 import java.sql.Blob;
 
 public class BookGetDTO {
@@ -13,15 +14,26 @@ public class BookGetDTO {
     private String author;
     private long buyerid;
     private String image;
-    private String imagestring;
 
-    public String getImagestring() {
-        return imagestring;
+    private float price;
+    private String category;
+
+    public float getPrice() {
+        return price;
     }
 
-    public void setImagestring(String imagestring) {
-        this.imagestring = imagestring;
+    public void setPrice(float price) {
+        this.price = price;
     }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
 
     public String getImage() {
         return image;
