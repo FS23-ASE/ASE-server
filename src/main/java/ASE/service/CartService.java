@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -26,7 +27,7 @@ public class CartService {
 
     @Autowired
     public CartService(@Qualifier("cartRepository") CartRepository cartRepository,
-                       BookRepository bookRepository) {
+                       @Qualifier("bookRepository") BookRepository bookRepository) {
         this.cartRepository = cartRepository;
         this.bookRepository = bookRepository;
     }
@@ -53,6 +54,14 @@ public class CartService {
         List<Book> books = cart.getBooks();
         books.removeIf(book -> book.getId().equals(bookId));
         cartRepository.save(cart);
+    }
+
+    public Cart createCart(Cart newCart) {
+        newCart = cartRepository.save(newCart);
+        cartRepository.flush();
+
+        log.debug("Created Information for Cart: {}", newCart);
+        return newCart;
     }
 
 }
