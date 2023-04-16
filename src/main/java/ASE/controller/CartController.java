@@ -31,7 +31,7 @@ public class CartController {
     }
 
     @PostMapping("/cart/{userId}/{bookId}")
-    public void addBookToCart(@PathVariable Long userId, @RequestBody Long bookId) {
+    public void addBookToCart(@PathVariable("userId") Long userId,@PathVariable("bookId") Long bookId) {
         cartService.addBookToCart(userId, bookId);
     }
 
