@@ -65,6 +65,15 @@ public class CartService {
         log.debug("Created Information for Cart: {}", newCart);
         return newCart;
     }
+    public void checkoutCart(long cartId) {
+        Cart cart = cartRepository.findById(cartId);
+        List<Book> books = cart.getBooks();
+        for(Book book:books){
+            book.setStatus(false);
+        }
+
+        books.removeAll(books);
+    }
 
 }
 

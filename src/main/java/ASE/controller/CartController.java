@@ -70,5 +70,11 @@ public class CartController {
         return bookGetDTOs;
     }
 
+    @PutMapping("/cart/checkout/{id}")
+    @ResponseBody
+    public void checkoutCart(@PathVariable Long id) {
+        // Call the cartService to check out the cart
+        cartService.checkoutCart(id);
+    }
 
 }
