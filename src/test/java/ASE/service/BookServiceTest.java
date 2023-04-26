@@ -10,6 +10,7 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.BDDAssumptions.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -76,6 +77,43 @@ public class BookServiceTest {
         // then
         assertEquals(book, result);
         verify(bookRepository, times(1)).findById(id);
+    }
+    @Test
+    public void testBookConstructor() {
+        String name = "The Great Gatsby";
+        String author = "F. Scott Fitzgerald";
+        String description = "A novel about the decadence of the Roaring Twenties.";
+        String publisher = "Charles Scribner's Sons";
+        Long sellerid = 123L;
+
+        Book book = new Book(name, author, description, publisher, sellerid);
+
+        assertEquals(name, book.getName());
+        assertEquals(author, book.getAuthor());
+        assertEquals(description, book.getDescription());
+        assertEquals(publisher, book.getPublisher());
+        assertEquals(sellerid, book.getSellerid());
+    }
+    @Test
+    public void testUpdateBook() {
+        // Set up
+//        Long bookId = 1L;
+//        Book existingBook = new Book("The Great Gatsby", "F. Scott Fitzgerald", "A classic novel", "Scribner", 1L);
+//        existingBook.setId(bookId);
+//        Book updatedBook = new Book("To Kill a Mockingbird", "Harper Lee", "A Pulitzer Prize-winning novel", "J. B. Lippincott & Co.", 2L);
+//        updatedBook.setImage("mock_image.jpg");
+//
+//        // Exercise
+//        bookService.update(existingBook, updatedBook);
+//
+//        // Verify
+//        verify(bookRepository, times(1)).save(existingBook);
+//        assertEquals(existingBook.getName(), updatedBook.getName());
+//        assertEquals(existingBook.getAuthor(), updatedBook.getAuthor());
+//        assertEquals(existingBook.getDescription(), updatedBook.getDescription());
+//        assertEquals(existingBook.getPublisher(), updatedBook.getPublisher());
+//        assertEquals(existingBook.getSellerid(), updatedBook.getSellerid());
+//        assertEquals(existingBook.getImage(), updatedBook.getImage());
     }
 
     @Test

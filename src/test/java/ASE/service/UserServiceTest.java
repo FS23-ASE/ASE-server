@@ -144,4 +144,3 @@ public class UserServiceTest {
         assertEquals(updatedUser.getEmail(), "janedoe@example.com");
     }
 }
-

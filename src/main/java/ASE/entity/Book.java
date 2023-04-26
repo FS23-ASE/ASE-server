@@ -3,7 +3,6 @@ package ASE.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Blob;
-import java.util.Date;
 
 @Entity
 @Table(name = "BOOK")
@@ -26,19 +25,50 @@ public class Book implements Serializable {
     private String publisher;
     @Column(nullable = true)
     private String description;
-    @Lob
     @Column(nullable = true)
-    private Blob image;
+    private String image;
     @Column(nullable = false)
     private long sellerid;
     @Column(nullable = true)
     private long buyerid;
+    @Column(nullable = false)
+    private float price;
+    @Column(nullable = true)
+    private String category;
 
-    public Blob getImage() {
+    public Book(String name, String author, String description, String publisher, Long sellerid) {
+        this.name = name;
+        this.author = author;
+        this.description = description;
+        this.publisher = publisher;
+        this.sellerid = sellerid;
+    }
+
+    public Book() {
+
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

@@ -1,47 +1,38 @@
 package ASE.repository;
 
+
 import ASE.entity.Book;
+import ASE.entity.Cart;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
-import static java.lang.Boolean.TRUE;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 @DataJpaTest
-public class BookRepositoryIntegrationTest {
-
+public class CartRepositoryIntegrationTest {
     @Autowired
     private TestEntityManager entityManager;
 
     @Autowired
-    private BookRepository bookRepository;
+    private CartRepository cartRepository;
     @Test
-    public void findByName_success() {
+    public void findByUserId_success() {
         // given
-        Book book = new Book();
-        book.setName("bookname");
-        book.setAuthor("bookname");
-        book.setSellerid(1);
-        book.setPrice(11.1F);
-        book.setPublisher("name");
-        book.setStatus(TRUE);
+        Cart cart = new Cart();
+        cart.setUserId(1L);
 
-
-
-
-
-        entityManager.persist(book);
+        entityManager.persist(cart);
         entityManager.flush();
 
         // when
-        Book found = bookRepository.findByName(book.getName());
+        Cart found = cartRepository.findByUserId(cart.getUserId());
 
         // then
         assertNotNull(found.getId());
-        assertEquals(found.getName(), book.getName());
-        assertEquals(found.getStatus(), book.getStatus());
+        assertEquals(found.getUserId(), cart.getUserId());
     }
 }

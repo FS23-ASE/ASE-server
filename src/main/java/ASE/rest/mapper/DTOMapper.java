@@ -1,13 +1,15 @@
 package ASE.rest.mapper;
 
+import ASE.entity.Cart;
 import ASE.entity.User;
 import ASE.entity.Book;
-import ASE.rest.dto.BookGetDTO;
-import ASE.rest.dto.BookPostDTO;
-import ASE.rest.dto.UserGetDTO;
-import ASE.rest.dto.UserPostDTO;
+import ASE.rest.dto.*;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
+
+import javax.sql.rowset.serial.SerialBlob;
+import java.sql.Blob;
+import java.sql.SQLException;
 
 /**
  * DTOMapper
@@ -37,7 +39,6 @@ public interface DTOMapper {
     @Mapping(source = "password", target = "password")
     @Mapping(source = "email", target = "email")
     @Mapping(source = "address", target = "address")
-
     UserGetDTO convertEntityToUserGetDTO(User user);
 
 
@@ -46,9 +47,11 @@ public interface DTOMapper {
     @Mapping(source = "description", target = "description")
     @Mapping(source = "publisher", target = "publisher")
     @Mapping(source = "status", target = "status")
-    //@Mapping(source = "image", target = "image")
     @Mapping(source = "sellerid", target = "sellerid")
     @Mapping(source = "buyerid", target = "buyerid")
+    @Mapping(source = "price", target = "price")
+    @Mapping(source = "category", target = "category")
+    @Mapping(target = "image", ignore = true)
     Book convertBookPostDTOtoEntity(BookPostDTO bookPostDTO);
 
     @Mapping(source = "id", target = "id")
@@ -57,9 +60,25 @@ public interface DTOMapper {
     @Mapping(source = "description", target = "description")
     @Mapping(source = "publisher", target = "publisher")
     @Mapping(source = "status", target = "status")
-    //@Mapping(source = "image", target = "image")
     @Mapping(source = "sellerid", target = "sellerid")
     @Mapping(source = "buyerid", target = "buyerid")
+
+    @Mapping(source = "price", target = "price")
+    @Mapping(source = "category", target = "category")
+    @Mapping(source = "image", target = "image")
     BookGetDTO convertEntityToBookGetDTO(Book book);
 
+
+    @Mapping(source = "books", target = "books")
+    @Mapping(source = "quantity", target = "quantity")
+    @Mapping(source = "prices", target = "prices")
+    @Mapping(source = "userId", target = "userId")
+    Cart convertCartPostDTOtoEntity(CartPostDTO cartPostDTO);
+
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "books", target = "books")
+    @Mapping(source = "quantity", target = "quantity")
+    @Mapping(source = "prices", target = "prices")
+    @Mapping(source = "userId", target = "userId")
+    CartGetDTO convertEntityToCartGetDTO(Cart cart);
 }

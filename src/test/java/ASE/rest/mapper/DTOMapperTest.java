@@ -13,29 +13,29 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * works.
  */
 public class DTOMapperTest {
-  @Test
-  public void testCreateUser_fromUserPostDTO_toUser_success() {
-    // create UserPostDTO
-    UserPostDTO userPostDTO = new UserPostDTO();
-    userPostDTO.setUsername("username");
+    @Test
+    public void testCreateUser_fromUserPostDTO_toUser_success() {
+        // create UserPostDTO
+        UserPostDTO userPostDTO = new UserPostDTO();
+        userPostDTO.setUsername("username");
 
-    // MAP -> Create user
-    User user = DTOMapper.INSTANCE.convertUserPostDTOtoEntity(userPostDTO);
+        // MAP -> Create user
+        User user = DTOMapper.INSTANCE.convertUserPostDTOtoEntity(userPostDTO);
 
-    // check content
-    assertEquals(userPostDTO.getUsername(), user.getUsername());
-  }
+        // check content
+        assertEquals(userPostDTO.getUsername(), user.getUsername());
+    }
 
-  @Test
-  public void testGetUser_fromUser_toUserGetDTO_success() {
-    // create User
-    User user = new User();
-    user.setUsername("firstname@lastname");
+    @Test
+    public void testGetUser_fromUser_toUserGetDTO_success() {
+        // create User
+        User user = new User();
+        user.setUsername("firstname@lastname");
 
-    // MAP -> Create UserGetDTO
-    UserGetDTO userGetDTO = DTOMapper.INSTANCE.convertEntityToUserGetDTO(user);
+        // MAP -> Create UserGetDTO
+        UserGetDTO userGetDTO = DTOMapper.INSTANCE.convertEntityToUserGetDTO(user);
 
-    // check content
-    assertEquals(user.getUsername(), userGetDTO.getUsername());
-  }
+        // check content
+        assertEquals(user.getUsername(), userGetDTO.getUsername());
+    }
 }
