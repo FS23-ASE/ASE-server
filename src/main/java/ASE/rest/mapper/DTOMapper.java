@@ -1,6 +1,7 @@
 package ASE.rest.mapper;
 
 import ASE.entity.Cart;
+import ASE.entity.Order;
 import ASE.entity.User;
 import ASE.entity.Book;
 import ASE.rest.dto.*;
@@ -81,4 +82,25 @@ public interface DTOMapper {
     @Mapping(source = "prices", target = "prices")
     @Mapping(source = "userId", target = "userId")
     CartGetDTO convertEntityToCartGetDTO(Cart cart);
+
+    @Mapping(source = "buyerId", target = "buyerId")
+    @Mapping(source = "sellerId", target = "sellerId")
+    @Mapping(source = "books", target = "books")
+    @Mapping(source = "amount", target = "amount")
+    @Mapping(source = "status", target = "status")
+    @Mapping(source = "date", target = "date")
+    Order convertOrderPostDTOtoEntity(OrderPostDTO orderPostDTO);
+
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "buyerId", target = "buyerId")
+    @Mapping(source = "sellerId", target = "sellerId")
+    @Mapping(source = "books", target = "books")
+    @Mapping(source = "amount", target = "amount")
+    @Mapping(source = "status", target = "status")
+    @Mapping(source = "date", target = "date")
+    OrderGetDTO convertEntityToOrderGetDTO(Order order);
+
+
+
+
 }
