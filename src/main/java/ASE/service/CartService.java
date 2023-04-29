@@ -11,8 +11,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.UUID;
@@ -36,6 +38,10 @@ public class CartService {
     public void addBookToCart(long userId, long bookId) {
         Cart cart = cartRepository.findByUserId(userId);
         Book book = bookRepository.findById(bookId);
+        if(cart.getBooks().contains(book)) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    "The book is in the cart!");
+        }
         cart.setPrices(cart.getPrices()+book.getPrice());
         cart.setQuantity(cart.getQuantity()+1);
         cart.getBooks().add(book);
@@ -75,6 +81,7 @@ public class CartService {
         books.removeAll(books);
         return cart;
     }
+
 
 }
 
