@@ -28,7 +28,7 @@ public class OrderService {
     }
 
     public Order getOrderByBuyerId(long buyerId){
-        return this.orderRepository.findByBuyId(buyerId);
+        return this.orderRepository.findByBuyerId(buyerId);
     }
 
     public Order getOrderBySellerId(long sellerId){

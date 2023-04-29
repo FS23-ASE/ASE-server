@@ -12,7 +12,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     Order findById(long id);
 
-    Order findByBuyId(long buyerId);
+    Order findByBuyerId(long buyerId);
 
     Order findBySellerId(long sellerId);
 }
