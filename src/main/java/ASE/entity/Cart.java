@@ -18,7 +18,7 @@ public class Cart implements Serializable {
     private int quantity;
 
     @Column(nullable = false)
-    private double prices;
+    private float prices;
 
     @Column(nullable = false)
     private Long userId;
@@ -50,11 +50,11 @@ public class Cart implements Serializable {
         this.quantity=quantity;
     }
 
-    public double getPrices(){
+    public float getPrices(){
         return prices;
     }
 
-    public void setPrices(double prices){
+    public void setPrices(float prices){
         this.prices=prices;
     }
 

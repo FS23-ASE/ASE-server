@@ -33,16 +33,16 @@ public class CartService {
     }
 
 
-    public void addBookToCart(long userId, long bookid) {
+    public void addBookToCart(long userId, long bookId) {
         Cart cart = cartRepository.findByUserId(userId);
-        Book book = bookRepository.findById(bookid);
+        Book book = bookRepository.findById(bookId);
         cart.setPrices(cart.getPrices()+book.getPrice());
         cart.setQuantity(cart.getQuantity()+1);
         cart.getBooks().add(book);
         cartRepository.save(cart);
     }
 
-    public Cart getCartbyid(long id) {
+    public Cart getCartbyId(long id) {
         Cart cart = cartRepository.findById(id);
         return cart;
     }

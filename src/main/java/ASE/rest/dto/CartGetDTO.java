@@ -12,7 +12,7 @@ public class CartGetDTO {
     private Long id;
     private List<Book> books;
     private int quantity;
-    private double prices;
+    private float prices;
     private Long userId;
 
     public Long getId() {
@@ -39,11 +39,11 @@ public class CartGetDTO {
         this.quantity=quantity;
     }
 
-    public double getPrices(){
+    public float getPrices(){
         return prices;
     }
 
-    public void setPrices(double prices){
+    public void setPrices(float prices){
         this.prices=prices;
     }
 
