@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+
 @Entity
 @Table(name = "ORDER")
 public class Order {
@@ -20,8 +21,8 @@ public class Order {
     @Column(nullable = false)
     private  Long sellerId;
 
-    @ManyToMany
-    private List<Book> books;
+    @ElementCollection
+    private List<Long> books;
 
     @Column(nullable = false)
     private double amount;
@@ -57,11 +58,11 @@ public class Order {
         this.sellerId=sellerId;
     }
 
-    public List<Book> getBooks(){
+    public List<Long> getBooks(){
         return books;
     }
 
-    public void setBooks(List<Book> books){
+    public void setBooks(List<Long> books){
         this.books=books;
     }
 

@@ -13,7 +13,7 @@ public class OrderPostDTO {
 
     private Long sellerId;
 
-    private List<Book> books;
+    private List<Long> books;
 
     private double amount;
 
@@ -45,11 +45,11 @@ public class OrderPostDTO {
         this.sellerId=sellerId;
     }
 
-    public List<Book> getBooks(){
+    public List<Long> getBooks(){
         return books;
     }
 
-    public void setBooks(List<Book> books){
+    public void setBooks(List<Long> books){
         this.books=books;
     }
 
