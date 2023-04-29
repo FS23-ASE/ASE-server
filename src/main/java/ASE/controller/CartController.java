@@ -63,8 +63,8 @@ public class CartController {
         Cart cart = cartService.getCartByUserId(userId);
         List<Book> books = cart.getBooks();
         List<BookGetDTO> bookGetDTOs = new ArrayList<>();
-
         for (Book book : books) {
+            System.out.println(book.getId());
             bookGetDTOs.add(DTOMapper.INSTANCE.convertEntityToBookGetDTO(book));
         }
         return bookGetDTOs;
@@ -72,9 +72,9 @@ public class CartController {
 
     @PutMapping("/cart/checkout/{id}")
     @ResponseBody
-    public void checkoutCart(@PathVariable Long id) {
+    public CartGetDTO checkoutCart(@PathVariable Long id) {
         // Call the cartService to check out the cart
-        cartService.checkoutCart(id);
+        return DTOMapper.INSTANCE.convertEntityToCartGetDTO(cartService.checkoutCart(id));
     }
 
 }

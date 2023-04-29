@@ -65,14 +65,15 @@ public class CartService {
         log.debug("Created Information for Cart: {}", newCart);
         return newCart;
     }
-    public void checkoutCart(long cartId) {
-        Cart cart = cartRepository.findById(cartId);
+    public Cart checkoutCart(long userId) {
+        Cart cart = getCartByUserId(userId);
         List<Book> books = cart.getBooks();
         for(Book book:books){
             book.setStatus(false);
         }
-
+        System.out.println("checking out...");
         books.removeAll(books);
+        return cart;
     }
 
 }
