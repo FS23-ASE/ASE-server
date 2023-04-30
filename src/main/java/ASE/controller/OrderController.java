@@ -45,7 +45,7 @@ public class OrderController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public OrderGetDTO getOrderBySellerId(@PathVariable("sellerId") Long sellerId) {
-        Order order = orderService.getOrderByBuyerId(sellerId);
+        Order order = orderService.getOrderBySellerId(sellerId);
         return DTOMapper.INSTANCE.convertEntityToOrderGetDTO(order);
     }
 
