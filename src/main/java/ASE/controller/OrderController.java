@@ -33,15 +33,15 @@ public class OrderController {
         return DTOMapper.INSTANCE.convertEntityToOrderGetDTO(createdOrder);
     }
 
-    @GetMapping("/order/{buyerId}")
+    @GetMapping("/order/buyer/{buyerId}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public OrderGetDTO getOrderByBuyrId(@PathVariable("buyerId") Long buyerId) {
+    public OrderGetDTO getOrderByBuyerId(@PathVariable("buyerId") Long buyerId) {
         Order order = orderService.getOrderByBuyerId(buyerId);
         return DTOMapper.INSTANCE.convertEntityToOrderGetDTO(order);
     }
 
-    @GetMapping("/order/{sellerId}")
+    @GetMapping("/order/seller/{sellerId}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public OrderGetDTO getOrderBySellerId(@PathVariable("sellerId") Long sellerId) {
