@@ -21,7 +21,7 @@ public class Order {
     private Long buyerId;
 
     @Column(nullable = false)
-    private  Long sellerId;
+    private Long sellerId;
 
     @ElementCollection
     private List<Long> books;
@@ -33,7 +33,7 @@ public class Order {
     private String status;
 
     @Column(nullable = false)
-    private Date date;
+    private String date;
 
 
     public Long getId() {
@@ -84,11 +84,11 @@ public class Order {
         this.status=status;
     }
 
-    public Date getDate(){
+    public String getDate(){
         return date;
     }
 
-    public void setDate(Date date){
+    public void setDate(String date){
         this.date=date;
     }
 
