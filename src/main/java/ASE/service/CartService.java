@@ -73,6 +73,7 @@ public class CartService {
     }
     public Cart checkoutCart(long userId) {
         Cart cart = getCartByUserId(userId);
+        cart.setPrices(0);
         List<Book> books = cart.getBooks();
         for(Book book:books){
             book.setStatus(false);

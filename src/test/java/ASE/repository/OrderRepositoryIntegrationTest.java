@@ -23,6 +23,7 @@ public class OrderRepositoryIntegrationTest {
     public void findByBuyerId_success() {
         Order order=new Order();
         order.setBuyerId(1L);
+        order.setSellerId(2L);
         entityManager.persist(order);
         entityManager.flush();
 
@@ -32,9 +33,11 @@ public class OrderRepositoryIntegrationTest {
         assertEquals(found.getBuyerId(), order.getBuyerId());
     }
 
+    @Test
     public void findBySellerId_success() {
         Order order=new Order();
         order.setSellerId(1L);
+        order.setBuyerId(1L);
         entityManager.persist(order);
         entityManager.flush();
 
