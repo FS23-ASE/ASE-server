@@ -30,7 +30,7 @@ public class Order {
     private double amount;
 
     @Column(nullable = false)
-    private Status status;
+    private String status;
 
     @Column(nullable = false)
     private Date date;
@@ -76,11 +76,11 @@ public class Order {
         this.amount=amount;
     }
 
-    public Status getStatus(){
+    public String getStatus(){
         return status;
     }
 
-    public void setStatus(Status status){
+    public void setStatus(String status){
         this.status=status;
     }
 

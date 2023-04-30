@@ -1,8 +1,5 @@
 package ASE.rest.dto;
 
-import ASE.entity.Book;
-import ASE.entity.Status;
-
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +14,7 @@ public class OrderGetDTO {
 
     private double amount;
 
-    private Status status;
+    private String status;
 
     private Date date;
 
@@ -61,11 +58,11 @@ public class OrderGetDTO {
         this.amount=amount;
     }
 
-    public Status getStatus(){
+    public String getStatus(){
         return status;
     }
 
-    public void setStatus(Status status){
+    public void setStatus(String status){
         this.status=status;
     }
 
