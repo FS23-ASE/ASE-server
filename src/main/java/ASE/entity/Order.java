@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "ORDER")
+@Table(name = "ORDERS")
 public class Order {
 
     private static final long serialVersionUID = 1L;
