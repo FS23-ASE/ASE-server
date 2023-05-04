@@ -11,8 +11,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.UUID;
@@ -33,16 +35,20 @@ public class CartService {
     }
 
 
-    public void addBookToCart(long userId, long bookid) {
+    public void addBookToCart(long userId, long bookId) {
         Cart cart = cartRepository.findByUserId(userId);
-        Book book = bookRepository.findById(bookid);
+        Book book = bookRepository.findById(bookId);
+        if(cart.getBooks().contains(book)) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    "The book is in the cart!");
+        }
         cart.setPrices(cart.getPrices()+book.getPrice());
         cart.setQuantity(cart.getQuantity()+1);
         cart.getBooks().add(book);
         cartRepository.save(cart);
     }
 
-    public Cart getCartbyid(long id) {
+    public Cart getCartbyId(long id) {
         Cart cart = cartRepository.findById(id);
         return cart;
     }
@@ -65,15 +71,18 @@ public class CartService {
         log.debug("Created Information for Cart: {}", newCart);
         return newCart;
     }
-    public void checkoutCart(long cartId) {
-        Cart cart = cartRepository.findById(cartId);
+    public Cart checkoutCart(long userId) {
+        Cart cart = getCartByUserId(userId);
+        cart.setPrices(0);
         List<Book> books = cart.getBooks();
         for(Book book:books){
             book.setStatus(false);
         }
-
+        System.out.println("checking out...");
         books.removeAll(books);
+        return cart;
     }
+
 
 }
 
