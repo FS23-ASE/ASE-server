@@ -3,6 +3,7 @@ package ASE.service;
 
 import ASE.entity.Book;
 import ASE.entity.Cart;
+import ASE.entity.Order;
 import ASE.entity.User;
 import ASE.repository.BookRepository;
 import ASE.repository.CartRepository;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -81,6 +83,22 @@ public class CartService {
         System.out.println("checking out...");
         books.removeAll(books);
         return cart;
+    }
+
+    public void createOrder(long userId){
+        Cart cart = cartRepository.findByUserId(userId);
+        List<Long> books;
+        for(Book book:cart.getBooks()){
+            Order order=new Order();
+            order.setBuyerId(userId);
+            order.setStatus("PAID");
+            order.setAmount(book.getPrice());
+            order.setSellerId(book.getSellerid());
+            books= new ArrayList<>();
+            books.add(book.getId());
+            order.setBooks(books);
+            order.setDate("");
+        }
     }
 
 
