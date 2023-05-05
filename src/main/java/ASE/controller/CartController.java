@@ -56,6 +56,13 @@ public class CartController {
         return DTOMapper.INSTANCE.convertEntityToCartGetDTO(createdCart);
     }
 
+    @PostMapping("/cart/order")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public void createOrder(@PathVariable("userId") Long userId) {
+        cartService.createOrder(userId);
+    }
+
     @GetMapping("/cart/books/{userId}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody

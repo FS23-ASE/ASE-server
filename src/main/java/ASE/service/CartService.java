@@ -17,7 +17,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,11 +32,18 @@ public class CartService {
     private final CartRepository cartRepository;
     private final BookRepository bookRepository;
 
+    private OrderService orderService;
+
+    public static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    public Date date;
+
     @Autowired
     public CartService(@Qualifier("cartRepository") CartRepository cartRepository,
-                       @Qualifier("bookRepository") BookRepository bookRepository) {
+                       @Qualifier("bookRepository") BookRepository bookRepository,
+                       @Qualifier("orderService") OrderService orderService) {
         this.cartRepository = cartRepository;
         this.bookRepository = bookRepository;
+        this.orderService= orderService;
     }
 
 
@@ -97,7 +107,9 @@ public class CartService {
             books= new ArrayList<>();
             books.add(book.getId());
             order.setBooks(books);
-            order.setDate("");
+            String format= dateFormat.format(new Date());
+            order.setDate(format);
+            orderService.createOrder(order);
         }
     }
 
