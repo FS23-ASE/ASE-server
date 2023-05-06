@@ -4,15 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Blob;
 
-
-/**
- * Internal Book Representation
- * This class composes the internal representation of the book and defines how
- * the book is stored in the database.
- * Every variable will be mapped into a database field with the @Column
- * annotation
- * - nullable = false -> this cannot be left empty
- */
 @Entity
 @Table(name = "BOOK")
 public class Book implements Serializable {
@@ -37,20 +28,20 @@ public class Book implements Serializable {
     @Column(nullable = true)
     private String image;
     @Column(nullable = false)
-    private long sellerid;
+    private long sellerId;
     @Column(nullable = true)
-    private long buyerid;
+    private long buyerId;
     @Column(nullable = false)
     private float price;
     @Column(nullable = true)
     private String category;
 
-    public Book(String name, String author, String description, String publisher, Long sellerid) {
+    public Book(String name, String author, String description, String publisher, Long sellerId) {
         this.name = name;
         this.author = author;
         this.description = description;
         this.publisher = publisher;
-        this.sellerid = sellerid;
+        this.sellerId = sellerId;
     }
 
     public Book() {
@@ -82,19 +73,19 @@ public class Book implements Serializable {
     }
 
     public long getSellerid() {
-        return sellerid;
+        return sellerId;
     }
 
     public void setSellerid(long seller_id) {
-        this.sellerid = seller_id;
+        this.sellerId = seller_id;
     }
 
     public long getBuyerid() {
-        return buyerid;
+        return buyerId;
     }
 
     public void setBuyerid(long buyerid) {
-        this.buyerid = buyerid;
+        this.buyerId = buyerid;
     }
 
     public String getPublisher() {
@@ -145,3 +136,4 @@ public class Book implements Serializable {
         this.status = status;
     }
 }
+

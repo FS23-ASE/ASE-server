@@ -23,10 +23,10 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     /**
      * Retrieves a list of books by the seller ID.
      *
-     * @param sellerid the ID of the seller
+     * @param sellerId the ID of the seller
      * @return a list of books associated with the seller ID
      */
-    List<Book> findBySellerid(long sellerid);
+    List<Book> findBySellerid(long sellerId);
 
     /**
      * Retrieves a book by its name.

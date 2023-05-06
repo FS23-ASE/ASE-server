@@ -1,9 +1,6 @@
 package ASE.rest.mapper;
 
-import ASE.entity.Cart;
-import ASE.entity.Order;
-import ASE.entity.User;
-import ASE.entity.Book;
+import ASE.entity.*;
 import ASE.rest.dto.*;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
@@ -48,8 +45,8 @@ public interface DTOMapper {
     @Mapping(source = "description", target = "description")
     @Mapping(source = "publisher", target = "publisher")
     @Mapping(source = "status", target = "status")
-    @Mapping(source = "sellerid", target = "sellerid")
-    @Mapping(source = "buyerid", target = "buyerid")
+    @Mapping(source = "sellerId", target = "sellerId")
+    @Mapping(source = "buyerId", target = "buyerId")
     @Mapping(source = "price", target = "price")
     @Mapping(source = "category", target = "category")
     @Mapping(target = "image", ignore = true)
@@ -61,8 +58,8 @@ public interface DTOMapper {
     @Mapping(source = "description", target = "description")
     @Mapping(source = "publisher", target = "publisher")
     @Mapping(source = "status", target = "status")
-    @Mapping(source = "sellerid", target = "sellerid")
-    @Mapping(source = "buyerid", target = "buyerid")
+    @Mapping(source = "sellerId", target = "sellerId")
+    @Mapping(source = "buyerId", target = "buyerId")
 
     @Mapping(source = "price", target = "price")
     @Mapping(source = "category", target = "category")
@@ -100,6 +97,18 @@ public interface DTOMapper {
     @Mapping(source = "date", target = "date")
     OrderGetDTO convertEntityToOrderGetDTO(Order order);
 
+    @Mapping(source = "sender", target = "sender")
+    @Mapping(source = "accepter", target = "accepter")
+    @Mapping(source = "orderId", target = "orderId")
+    @Mapping(source = "msg", target = "msg")
+    Contact convertContactPostDTOtoEntity(ContactPostDTO contactPostDTO);
+
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "sender", target = "sender")
+    @Mapping(source = "accepter", target = "accepter")
+    @Mapping(source = "orderId", target = "orderId")
+    @Mapping(source = "msg", target = "msg")
+    ContactGetDTO convertEntityToContactGetDTO(Contact contact);
 
 
 

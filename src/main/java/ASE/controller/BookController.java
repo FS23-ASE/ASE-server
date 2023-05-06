@@ -35,13 +35,6 @@ import java.sql.SQLException;
 import java.util.Base64;
 
 
-/**
- * Book Controller
- * This class is responsible for handling all REST request that are related to
- * the book.
- * The controller will receive the request and delegate the execution to the
- * BookService and finally return the result.
- */
 @RestController
 public class BookController {
 
@@ -108,7 +101,7 @@ public class BookController {
     @GetMapping("/books/seller/{sellerid}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public List<BookGetDTO> getBookBySeller(@PathVariable("sellerid") long seller_id) {
+    public List<BookGetDTO> getBookBySeller(@PathVariable("sellerId") long seller_id) {
         List<Book> books = bookService.getBookBySeller(seller_id);
         List<BookGetDTO> bookGetDTOs = new ArrayList<>();
 
