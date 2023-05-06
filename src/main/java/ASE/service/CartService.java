@@ -24,6 +24,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+
+/**
+ * Cart Service
+ * This class is the "worker" and responsible for all functionality related to
+ * the cart
+ * (e.g., it creates, modifies, deletes, finds). The result will be passed back
+ * to the caller.
+ */
 @Service
 @Transactional
 public class CartService {
@@ -39,14 +47,17 @@ public class CartService {
 
     @Autowired
     public CartService(@Qualifier("cartRepository") CartRepository cartRepository,
-                       @Qualifier("bookRepository") BookRepository bookRepository,
-                       @Qualifier("orderService") OrderService orderService) {
+                       @Qualifier("bookRepository") BookRepository bookRepository) {
         this.cartRepository = cartRepository;
         this.bookRepository = bookRepository;
-        this.orderService= orderService;
     }
 
-
+    /**
+     * Adds a book to the user's cart.
+     *
+     * @param userId  the ID of the user
+     * @param bookId  the ID of the book to add
+     */
     public void addBookToCart(long userId, long bookId) {
         Cart cart = cartRepository.findByUserId(userId);
         Book book = bookRepository.findById(bookId);
@@ -60,15 +71,35 @@ public class CartService {
         cartRepository.save(cart);
     }
 
+    /**
+     * Retrieves a cart by its ID.
+     *
+     * @param id  the ID of the cart to retrieve
+     * @return the retrieved cart
+     */
     public Cart getCartbyId(long id) {
         Cart cart = cartRepository.findById(id);
         return cart;
     }
 
+
+    /**
+     * Retrieves the cart of a user.
+     *
+     * @param userId  the ID of the user
+     * @return the user's cart
+     */
     public Cart getCartByUserId(long userId) {
         return this.cartRepository.findByUserId(userId);
     }
 
+
+    /**
+     * Deletes a book from the cart.
+     *
+     * @param cartId   the ID of the cart
+     * @param bookId   the ID of the book to delete
+     */
     public void deleteBookFromCart(long cartId, long bookId) {
         Cart cart = cartRepository.findById(cartId);
         List<Book> books = cart.getBooks();
@@ -76,6 +107,13 @@ public class CartService {
         cartRepository.save(cart);
     }
 
+
+    /**
+     * Creates a new cart.
+     *
+     * @param newCart  the cart to create
+     * @return the created cart
+     */
     public Cart createCart(Cart newCart) {
         newCart = cartRepository.save(newCart);
         cartRepository.flush();
@@ -83,6 +121,13 @@ public class CartService {
         log.debug("Created Information for Cart: {}", newCart);
         return newCart;
     }
+
+    /**
+     * Checks out the user's cart.
+     *
+     * @param userId  the ID of the user
+     * @return the checked out cart
+     */
     public Cart checkoutCart(long userId) {
         Cart cart = getCartByUserId(userId);
         cart.setPrices(0);
@@ -95,6 +140,11 @@ public class CartService {
         return cart;
     }
 
+    /**
+     * Creates orders for the books in the user's cart.
+     *
+     * @param userId  the ID of the user
+     */
     public void createOrder(long userId){
         Cart cart = cartRepository.findByUserId(userId);
         List<Long> books;

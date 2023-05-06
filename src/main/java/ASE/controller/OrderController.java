@@ -12,25 +12,20 @@ import ASE.service.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+
+/**
+ * Order Controller
+ * This class is responsible for handling all REST request that are related to
+ * the order.
+ * The controller will receive the request and delegate the execution to the
+ * OrderService and finally return the result.
+ */
 @RestController
 public class OrderController {
     private final OrderService orderService;
 
     OrderController(OrderService orderService) {
         this.orderService = orderService;
-    }
-
-    @PostMapping("/order")
-    @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
-    public OrderGetDTO createOrder(@RequestBody OrderPostDTO orderPostDTO) {
-        // convert API user to internal representation
-        Order orderInput = DTOMapper.INSTANCE.convertOrderPostDTOtoEntity(orderPostDTO);
-
-        // create cart
-        Order createdOrder = orderService.createOrder(orderInput);
-        // convert internal representation of user back to API
-        return DTOMapper.INSTANCE.convertEntityToOrderGetDTO(createdOrder);
     }
 
     @GetMapping("/order/buyer/{buyerId}")

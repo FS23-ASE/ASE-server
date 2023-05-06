@@ -14,6 +14,9 @@ import static org.assertj.core.api.BDDAssumptions.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
+/**
+ * The BookServiceTest class is responsible for testing the BookService functionality.
+ */
 public class BookServiceTest {
 
     private BookService bookService;
@@ -27,6 +30,9 @@ public class BookServiceTest {
         bookService = new BookService(bookRepository);
     }
 
+    /**
+     * Test case for retrieving books from the BookRepository and verifying the result.
+     */
     @Test
     public void testGetBooks() {
         // given
@@ -47,6 +53,9 @@ public class BookServiceTest {
         verify(bookRepository, times(1)).findAll();
     }
 
+    /**
+     * Test case for creating a book in the BookRepository and verifying the result.
+     */
     @Test
     public void testCreateBook() {
         // given
@@ -63,6 +72,9 @@ public class BookServiceTest {
         verify(bookRepository, times(1)).flush();
     }
 
+    /**
+     * Test case for retrieving a book by its ID from the BookRepository and verifying the result.
+     */
     @Test
     public void testGetBookById() {
         // given
@@ -78,6 +90,10 @@ public class BookServiceTest {
         assertEquals(book, result);
         verify(bookRepository, times(1)).findById(id);
     }
+
+    /**
+     * Test case for validating the Book constructor.
+     */
     @Test
     public void testBookConstructor() {
         String name = "The Great Gatsby";

@@ -14,6 +14,14 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Cart Controller
+ * This class is responsible for handling all REST request that are related to
+ * the cart.
+ * The controller will receive the request and delegate the execution to the
+ * CartService and finally return the result.
+ */
 @RestController
 public class CartController {
     private final CartService cartService;

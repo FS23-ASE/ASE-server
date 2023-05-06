@@ -17,6 +17,10 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+
+/**
+ * The UserServiceTest class is responsible for testing the UserService functionality.
+ */
 public class UserServiceTest {
 
     @Mock
@@ -50,6 +54,9 @@ public class UserServiceTest {
 
     }
 
+    /**
+     * Test case for creating a user with valid inputs and verifying the result.
+     */
     @Test
     public void createUser_validInputs_success() {
         // when -> any object is being save in the userRepository -> return the dummy
@@ -62,6 +69,10 @@ public class UserServiceTest {
         assertEquals(testUser.getUsername(), createdUser.getUsername());
     }
 
+
+    /**
+     * Test case for creating a user with duplicate inputs and expecting an exception to be thrown.
+     */
     @Test
     public void createUser_duplicateInputs_throwsException() {
         // given -> a first user has already been created
@@ -75,6 +86,10 @@ public class UserServiceTest {
         assertThrows(ResponseStatusException.class, () -> userService.createUser(testUser));
     }
 
+
+    /**
+     * Test case for retrieving all users and verifying the result.
+     */
     @Test
     void getUsers() {
         User createdUser = userService.createUser(testUser);
@@ -91,6 +106,10 @@ public class UserServiceTest {
 
     }
 
+
+    /**
+     * Test case for user login with valid inputs and verifying the result.
+     */
     @Test
     void userLogin_validInputs_success() {
         // given
@@ -108,7 +127,9 @@ public class UserServiceTest {
         assertEquals(testUser.getToken(), loggedInUser.getToken());
     }
 
-
+    /**
+     * Test case for retrieving a user by ID from the UserRepository and verifying the result.
+     */
     @Test
     public void testGetUserById() {
         // given
@@ -124,6 +145,10 @@ public class UserServiceTest {
         verify(userRepository, times(1)).findById(id);
     }
 
+
+    /**
+     * Test case for updating a user and verifying the result.
+     */
     @Test
     public void testUpdateUser() {
         // create a User object to update

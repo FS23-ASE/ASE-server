@@ -14,6 +14,14 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.UUID;
 
+
+/**
+ * Book Service
+ * This class is the "worker" and responsible for all functionality related to
+ * the book
+ * (e.g., it creates, modifies, deletes, finds). The result will be passed back
+ * to the caller.
+ */
 @Service
 @Transactional
 public class BookService {
@@ -27,10 +35,21 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
+    /**
+     * Retrieves all books.
+     *
+     * @return the list of all books
+     */
     public List<Book> getBooks() {
         return this.bookRepository.findAll();
     }
 
+    /**
+     * Creates a new book.
+     *
+     * @param newBook the book to be created
+     * @return the created book
+     */
     public Book createBook(Book newBook) {
         newBook.setStatus(true);
         newBook = bookRepository.save(newBook);
@@ -40,21 +59,39 @@ public class BookService {
         return newBook;
     }
 
+    /**
+     * Retrieves a book by its ID.
+     *
+     * @param id the ID of the book to retrieve
+     * @return the retrieved book
+     */
     public Book getBookbyid(long id) {
         Book book = bookRepository.findById(id);
         return book;
     }
 
+    /**
+     * Retrieves books by the seller ID.
+     *
+     * @param sellerid the ID of the seller
+     * @return the list of books belonging to the seller
+     */
     public List<Book> getBookBySeller(long sellerid) {
         return this.bookRepository.findBySellerid(sellerid);
     }
 
-  public void update(Book book, Book bookinput){
-
-      if(bookinput.getImage() != null){
-          String updateImage = bookinput.getImage();
-          book.setImage(bookinput.getImage());
-      }
-      bookRepository.save(book);
-  }
+    /**
+     * Updates a book with new information.
+     *
+     * @param book       the book to update
+     * @param bookinput  the updated book information
+     */
+    public void update(Book book, Book bookinput) {
+        if (bookinput.getImage() != null) {
+            String updateImage = bookinput.getImage();
+            book.setImage(bookinput.getImage());
+        }
+        bookRepository.save(book);
+    }
 }
+

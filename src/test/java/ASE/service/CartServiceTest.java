@@ -29,7 +29,7 @@ public class CartServiceTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        cartService = new CartService(cartRepository,bookRepository,orderService);
+        cartService = new CartService(cartRepository,bookRepository);
     }
 
     @Test

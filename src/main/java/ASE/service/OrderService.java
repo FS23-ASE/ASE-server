@@ -11,6 +11,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+/**
+ * Order Service
+ * This class is the "worker" and responsible for all functionality related to
+ * the order
+ * (e.g., it creates, modifies, deletes, finds). The result will be passed back
+ * to the caller.
+ */
 @Service
 @Transactional
 public class OrderService {
@@ -23,18 +31,43 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
+    /**
+     * Retrieves an order by its ID.
+     *
+     * @param id  the ID of the order to retrieve
+     * @return the retrieved order
+     */
     public Order getOrderById(long id){
         return this.orderRepository.findById(id);
     }
 
+    /**
+     * Retrieves an order by the buyer's ID.
+     *
+     * @param buyerId  the ID of the buyer
+     * @return the retrieved order
+     */
     public Order getOrderByBuyerId(long buyerId){
         return this.orderRepository.findByBuyerId(buyerId);
     }
 
+    /**
+     * Retrieves an order by the seller's ID.
+     *
+     * @param sellerId  the ID of the seller
+     * @return the retrieved order
+     */
     public Order getOrderBySellerId(long sellerId){
         return this.orderRepository.findBySellerId(sellerId);
     }
 
+
+    /**
+     * Creates a new order.
+     *
+     * @param newOrder  the order to create
+     * @return the created order
+     */
     public Order createOrder(Order newOrder){
 
         newOrder = orderRepository.save(newOrder);

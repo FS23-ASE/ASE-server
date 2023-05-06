@@ -4,6 +4,15 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Blob;
 
+
+/**
+ * Internal Book Representation
+ * This class composes the internal representation of the book and defines how
+ * the book is stored in the database.
+ * Every variable will be mapped into a database field with the @Column
+ * annotation
+ * - nullable = false -> this cannot be left empty
+ */
 @Entity
 @Table(name = "BOOK")
 public class Book implements Serializable {
