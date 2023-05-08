@@ -101,7 +101,7 @@ public class BookController {
     @GetMapping("/books/seller/{sellerid}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public List<BookGetDTO> getBookBySeller(@PathVariable("sellerId") long seller_id) {
+    public List<BookGetDTO> getBookBySeller(@PathVariable("sellerid") long seller_id) {
         List<Book> books = bookService.getBookBySeller(seller_id);
         List<BookGetDTO> bookGetDTOs = new ArrayList<>();
 

@@ -28,20 +28,20 @@ public class Book implements Serializable {
     @Column(nullable = true)
     private String image;
     @Column(nullable = false)
-    private long sellerId;
+    private long sellerid;
     @Column(nullable = true)
-    private long buyerId;
+    private long buyerid;
     @Column(nullable = false)
     private float price;
     @Column(nullable = true)
     private String category;
 
-    public Book(String name, String author, String description, String publisher, Long sellerId) {
+    public Book(String name, String author, String description, String publisher, Long sellerid) {
         this.name = name;
         this.author = author;
         this.description = description;
         this.publisher = publisher;
-        this.sellerId = sellerId;
+        this.sellerid = sellerid;
     }
 
     public Book() {
@@ -73,19 +73,19 @@ public class Book implements Serializable {
     }
 
     public long getSellerid() {
-        return sellerId;
+        return sellerid;
     }
 
     public void setSellerid(long seller_id) {
-        this.sellerId = seller_id;
+        this.sellerid = seller_id;
     }
 
     public long getBuyerid() {
-        return buyerId;
+        return buyerid;
     }
 
     public void setBuyerid(long buyerid) {
-        this.buyerId = buyerid;
+        this.buyerid = buyerid;
     }
 
     public String getPublisher() {

@@ -10,9 +10,9 @@ public class BookGetDTO {
     private String publisher;
     private String description;
     private Boolean status;
-    private long sellerid;
+    private long sellerId;
     private String author;
-    private long buyerid;
+    private long buyerId;
     private String image;
 
     private float price;
@@ -52,19 +52,19 @@ public class BookGetDTO {
     }
 
     public long getBuyerid() {
-        return buyerid;
+        return buyerId;
     }
 
-    public void setBuyerid(long buyerid) {
-        this.buyerid = buyerid;
+    public void setBuyerid(long buyerId) {
+        this.buyerId = buyerId;
     }
 
     public long getSellerid() {
-        return sellerid;
+        return sellerId;
     }
 
-    public void setSellerid(long sellerid) {
-        this.sellerid = sellerid;
+    public void setSellerid(long sellerId) {
+        this.sellerId = sellerId;
     }
 
     public Long getId() {
