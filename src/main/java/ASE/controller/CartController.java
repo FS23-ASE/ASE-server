@@ -2,6 +2,7 @@ package ASE.controller;
 
 import ASE.entity.Book;
 import ASE.entity.Cart;
+import ASE.entity.Order;
 import ASE.entity.User;
 import ASE.rest.dto.*;
 import ASE.rest.mapper.DTOMapper;
@@ -54,7 +55,7 @@ public class CartController {
     @PostMapping("/cart")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public CartGetDTO createUser(@RequestBody CartPostDTO cartPostDTO) {
+    public CartGetDTO createCart(@RequestBody CartPostDTO cartPostDTO) {
         // convert API user to internal representation
         Cart cartInput = DTOMapper.INSTANCE.convertCartPostDTOtoEntity(cartPostDTO);
 
@@ -67,9 +68,7 @@ public class CartController {
     @PostMapping("/cart/order/{userId}")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public void createOrder(@PathVariable("userId") Long userId) {
-        cartService.createOrder(userId);
-    }
+    public void createOrder(@PathVariable("userId") Long userId) {cartService.createOrder(userId);}
 
     @GetMapping("/cart/books/{userId}")
     @ResponseStatus(HttpStatus.OK)

@@ -75,8 +75,8 @@ public class OrderService {
         orderRepository.flush();
 
         log.debug("Created Information for Order: {}", newOrder);
-        return newOrder;
 
+        return newOrder;
     }
 
 

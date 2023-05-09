@@ -40,16 +40,18 @@ public class CartService {
     private final CartRepository cartRepository;
     private final BookRepository bookRepository;
 
-    private OrderService orderService;
+    private final OrderService orderService;
 
     public static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     public Date date;
 
     @Autowired
     public CartService(@Qualifier("cartRepository") CartRepository cartRepository,
-                       @Qualifier("bookRepository") BookRepository bookRepository) {
+                       @Qualifier("bookRepository") BookRepository bookRepository,
+                       @Qualifier("orderService") OrderService orderService) {
         this.cartRepository = cartRepository;
         this.bookRepository = bookRepository;
+        this.orderService= orderService;
     }
 
     /**
@@ -159,7 +161,7 @@ public class CartService {
             order.setBooks(books);
             String format= dateFormat.format(new Date());
             order.setDate(format);
-            orderService.createOrder(order);
+            Order neworder=orderService.createOrder(order);
         }
     }
 
