@@ -29,6 +29,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
+/**
+ * CartControllerTest
+ * This is a WebMvcTest which allows to test the CartController i.e. GET/POST
+ * request without actually sending them over the network.
+ * This tests if the CartController works.
+ */
 @WebMvcTest(CartController.class)
 public class CartControllerTest {
 
