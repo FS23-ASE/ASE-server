@@ -1,6 +1,23 @@
 # Group-ASE-server
 
 This is the server-side code for a Book E-Commerce web application developed by Group ASE as part of the FS23 Advanced Software Engineering course.
+
+## Technologies Used
+
+The project is built using the following technologies:
+
+Java
+
+Spring Boot
+
+Gradle
+
+RESTful web services
+
+MySQL (for data storage)
+
+Docker (for containerization and deployment)
+
 ## REST Specification
 
 
@@ -43,3 +60,17 @@ After that the program is ready for use
 ```bash
 ./gradlew test
 ```
+
+
+
+## Microservices
+
+The project consists of the following microservices:
+
+User Service: Handles user registration, authentication, and profile management.
+
+Book Service: Manages the book catalog, including book listing, search, and details.
+
+Order Service: Handles order processing, including placing orders, order tracking, and order history.
+
+Cart Service: Manages the shopping cart functionality, including adding/removing items and calculating the total amount.
