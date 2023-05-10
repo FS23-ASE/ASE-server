@@ -39,13 +39,15 @@ public class OrderServiceTest {
         long buyerid = 1L;
         Order order=new Order();
         order.setBuyerId(buyerid);
-        when(orderRepository.findByBuyerId(buyerid)).thenReturn(order);
+        List<Order> orders=new ArrayList<>();
+        orders.add(order);
+        when(orderRepository.findByBuyerId(buyerid)).thenReturn(orders);
 
         // when
-        Order result=orderService.getOrderByBuyerId(buyerid);
+        List<Order> result=orderService.getOrderByBuyerId(buyerid);
 
         // then
-        assertEquals(1L, result.getBuyerId());
+        assertEquals(1, result.size());
         verify(orderRepository, times(1)).findByBuyerId(buyerid);
     }
 
@@ -59,13 +61,15 @@ public class OrderServiceTest {
         long sellerid = 1L;
         Order order=new Order();
         order.setSellerId(sellerid);
-        when(orderRepository.findBySellerId(sellerid)).thenReturn(order);
+        List<Order> orders=new ArrayList<>();
+        orders.add(order);
+        when(orderRepository.findBySellerId(sellerid)).thenReturn(orders);
 
         // when
-        Order result=orderService.getOrderBySellerId(sellerid);
+        List<Order> result=orderService.getOrderBySellerId(sellerid);
 
         // then
-        assertEquals(1L, result.getSellerId());
+        assertEquals(1, result.size());
         verify(orderRepository, times(1)).findBySellerId(sellerid);
     }
 

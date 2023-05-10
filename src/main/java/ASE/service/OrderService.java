@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 /**
  * Order Service
@@ -47,7 +49,7 @@ public class OrderService {
      * @param buyerId  the ID of the buyer
      * @return the retrieved order
      */
-    public Order getOrderByBuyerId(long buyerId){
+    public List<Order> getOrderByBuyerId(long buyerId){
         return this.orderRepository.findByBuyerId(buyerId);
     }
 
@@ -57,7 +59,7 @@ public class OrderService {
      * @param sellerId  the ID of the seller
      * @return the retrieved order
      */
-    public Order getOrderBySellerId(long sellerId){
+    public List<Order> getOrderBySellerId(long sellerId){
         return this.orderRepository.findBySellerId(sellerId);
     }
 

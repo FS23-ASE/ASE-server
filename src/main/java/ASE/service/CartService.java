@@ -42,8 +42,7 @@ public class CartService {
 
     private final OrderService orderService;
 
-    public static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    public Date date;
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
     @Autowired
     public CartService(@Qualifier("cartRepository") CartRepository cartRepository,
@@ -138,7 +137,7 @@ public class CartService {
             book.setStatus(false);
         }
         System.out.println("checking out...");
-        books.removeAll(books);
+        books.clear();
         return cart;
     }
 

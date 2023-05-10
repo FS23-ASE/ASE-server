@@ -1,16 +1,17 @@
 package ASE.controller;
 
+import ASE.entity.Book;
 import ASE.entity.Cart;
 import ASE.entity.Order;
-import ASE.rest.dto.CartGetDTO;
-import ASE.rest.dto.CartPostDTO;
-import ASE.rest.dto.OrderGetDTO;
-import ASE.rest.dto.OrderPostDTO;
+import ASE.rest.dto.*;
 import ASE.rest.mapper.DTOMapper;
 import ASE.service.CartService;
 import ASE.service.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -31,17 +32,27 @@ public class OrderController {
     @GetMapping("/order/buyer/{buyerId}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public OrderGetDTO getOrderByBuyerId(@PathVariable("buyerId") Long buyerId) {
-        Order order = orderService.getOrderByBuyerId(buyerId);
-        return DTOMapper.INSTANCE.convertEntityToOrderGetDTO(order);
+    public List<OrderGetDTO> getOrderByBuyerId(@PathVariable("buyerId") Long buyerId) {
+        List<Order> orders = orderService.getOrderBySellerId(buyerId);
+        List<OrderGetDTO> orderGetDTOs = new ArrayList<>();
+
+        for (Order  order : orders) {
+            orderGetDTOs.add(DTOMapper.INSTANCE.convertEntityToOrderGetDTO(order));
+        }
+        return orderGetDTOs;
     }
 
     @GetMapping("/order/seller/{sellerId}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public OrderGetDTO getOrderBySellerId(@PathVariable("sellerId") Long sellerId) {
-        Order order = orderService.getOrderBySellerId(sellerId);
-        return DTOMapper.INSTANCE.convertEntityToOrderGetDTO(order);
+    public List<OrderGetDTO> getOrderBySellerId(@PathVariable("sellerId") Long sellerId) {
+        List<Order> orders = orderService.getOrderBySellerId(sellerId);
+        List<OrderGetDTO> orderGetDTOs = new ArrayList<>();
+
+        for (Order  order : orders) {
+            orderGetDTOs.add(DTOMapper.INSTANCE.convertEntityToOrderGetDTO(order));
+        }
+        return orderGetDTOs;
     }
 
     @GetMapping("/order/{id}")

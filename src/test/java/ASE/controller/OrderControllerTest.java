@@ -13,6 +13,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -51,7 +54,9 @@ public class OrderControllerTest {
         Order order=new Order();
         order.setId(2L);
         order.setSellerId(sellerId);
-        given(orderService.getOrderBySellerId(Mockito.anyLong())).willReturn(order);
+        List<Order> orders=new ArrayList<>();
+        orders.add(order);
+        given(orderService.getOrderBySellerId(Mockito.anyLong())).willReturn(orders);
 
         MockHttpServletRequestBuilder getRequest = get("/order/seller/2")
                 .contentType(MediaType.APPLICATION_JSON);
