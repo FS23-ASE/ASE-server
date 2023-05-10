@@ -19,10 +19,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 
 /**
@@ -148,19 +145,33 @@ public class CartService {
      */
     public void createOrder(long userId){
         Cart cart = cartRepository.findByUserId(userId);
-        List<Long> books;
-        for(Book book:cart.getBooks()){
-            Order order=new Order();
+
+        Map<Long, List<Book>> sellerBooksMap = new HashMap<>();
+
+        for (Book book : cart.getBooks()) {
+            sellerBooksMap.computeIfAbsent(book.getSellerid(), k -> new ArrayList<>()).add(book);
+        }
+
+        for (List<Book> sellerBooks : sellerBooksMap.values()) {
+            Order order = new Order();
             order.setBuyerId(userId);
             order.setStatus("PAID");
-            order.setAmount(book.getPrice());
-            order.setSellerId(book.getSellerid());
-            books= new ArrayList<>();
-            books.add(book.getId());
-            order.setBooks(books);
+
+            double totalAmount = 0.0;
+
+            for (Book book : sellerBooks) {
+                totalAmount += book.getPrice();
+            }
+
+            order.setAmount(totalAmount);
+            order.setSellerId(sellerBooks.get(0).getSellerid());
             String format= dateFormat.format(new Date());
             order.setDate(format);
-            Order neworder=orderService.createOrder(order);
+            order.setBooks(sellerBooks);
+
+            Order newOrder = orderService.createOrder(order);
+
+            // 可根据需要进一步处理新订单的逻辑
         }
     }
 

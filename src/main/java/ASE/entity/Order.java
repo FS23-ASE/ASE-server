@@ -30,8 +30,8 @@ public class Order {
     @Column(nullable = false)
     private Long sellerId;
 
-    @ElementCollection
-    private List<Long> books;
+    @OneToMany
+    private List<Book> books;
 
     @Column(nullable = false)
     private double amount;
@@ -67,11 +67,11 @@ public class Order {
         this.sellerId=sellerId;
     }
 
-    public List<Long> getBooks(){
+    public List<Book> getBooks(){
         return books;
     }
 
-    public void setBooks(List<Long> books){
+    public void setBooks(List<Book> books){
         this.books=books;
     }
 
