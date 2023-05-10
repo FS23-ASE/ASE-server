@@ -38,7 +38,9 @@ public class OrderControllerTest {
         Order order=new Order();
         order.setId(1L);
         order.setBuyerId(buyerId);
-        given(orderService.getOrderByBuyerId(Mockito.anyLong())).willReturn(order);
+        List<Order> orders=new ArrayList<>();
+        orders.add(order);
+        given(orderService.getOrderByBuyerId(Mockito.anyLong())).willReturn(orders);
 
         MockHttpServletRequestBuilder getRequest = get("/order/buyer/1")
                 .contentType(MediaType.APPLICATION_JSON);
