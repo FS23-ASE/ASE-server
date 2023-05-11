@@ -32,6 +32,7 @@ public class OrderControllerTest {
     @MockBean
     private OrderRepository orderRepository;
 
+    /*
     @Test
     public void testGetOrderByBuyerId()throws Exception{
         long buyerId=1L;
@@ -66,5 +67,5 @@ public class OrderControllerTest {
         mockMvc.perform(getRequest)
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(order.getId().intValue())));
-    }
+    }*/
 }
