@@ -63,19 +63,5 @@ public class OrderController {
         return DTOMapper.INSTANCE.convertEntityToOrderGetDTO(order);
     }
 
-    @GetMapping("/order/books/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    @ResponseBody
-    public List<BookGetDTO> getBooks(@PathVariable("id") long id) {
-        Order order =  orderService.getOrderById(id);
-        List<Book> books = order.getBooks();
-        List<BookGetDTO> bookGetDTOs = new ArrayList<>();
-        for (Book book : books) {
-            System.out.println(book.getId());
-            bookGetDTOs.add(DTOMapper.INSTANCE.convertEntityToBookGetDTO(book));
-        }
-        return bookGetDTOs;
-    }
-
 
 }
