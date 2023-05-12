@@ -21,9 +21,11 @@ Docker (for containerization and deployment)
 ## REST Specification
 
 
+<img width="621" alt="restful1" src="https://github.com/FS23-ASE/ASE-server/assets/116545176/fe617005-9bd0-4c7b-bf06-e631ee1c9c21">
+<img width="622" alt="restful2" src="https://github.com/FS23-ASE/ASE-server/assets/116545176/45c56fbb-8e0f-4c3e-8be7-a75c4d11bd14">
 
 
-![REST_Specification.png](REST_Specification.png)
+
 
 ## Set up local database and  link it to server program
 First download and install Mysql: https://dev.mysql.com/downloads/mysql/  
