@@ -33,7 +33,7 @@ public class OrderController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public List<OrderGetDTO> getOrderByBuyerId(@PathVariable("buyerId") Long buyerId) {
-        List<Order> orders = orderService.getOrderBySellerId(buyerId);
+        List<Order> orders = orderService.getOrderByBuyerId(buyerId);
         List<OrderGetDTO> orderGetDTOs = new ArrayList<>();
 
         for (Order  order : orders) {
