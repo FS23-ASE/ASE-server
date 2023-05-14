@@ -22,7 +22,7 @@ public class ContactService {
         this.contactRepository = contactRepository;
     }
 
-    public Contact getContactByAccepter(long accepter){return this.contactRepository.findByAccepter(accepter);}
+    public List<Contact> getContactByAccepter(long accepter){return this.contactRepository.findByAccepter(accepter);}
 
     public Contact createContact(Contact newContact){
 
