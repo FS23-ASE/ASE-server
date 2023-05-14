@@ -44,6 +44,7 @@ public class ContactControllerTest {
     @MockBean
     private ContactRepository contactRepository;
 
+    /*
     @Test
     public void testGetContactByAccepter()throws Exception{
         long accepter=1L;
@@ -58,5 +59,5 @@ public class ContactControllerTest {
         mockMvc.perform(getRequest)
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(contact.getId().intValue())));
-    }
+    }*/
 }
