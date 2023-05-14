@@ -33,7 +33,7 @@ public class OrderController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public List<OrderGetDTO> getOrderByBuyerId(@PathVariable("buyerId") Long buyerId) {
-        List<Order> orders = orderService.getOrderBySellerId(buyerId);
+        List<Order> orders = orderService.getOrderByBuyerId(buyerId);
         List<OrderGetDTO> orderGetDTOs = new ArrayList<>();
 
         for (Order  order : orders) {
@@ -61,6 +61,20 @@ public class OrderController {
     public OrderGetDTO getOrderById(@PathVariable("id") Long id) {
         Order order = orderService.getOrderById(id);
         return DTOMapper.INSTANCE.convertEntityToOrderGetDTO(order);
+    }
+
+    @GetMapping("/order/books/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public List<BookGetDTO> getBooks(@PathVariable("id") long id) {
+        Order order = orderService.getOrderById(id);
+        List<Book> books = order.getBooks();
+        List<BookGetDTO> bookGetDTOs = new ArrayList<>();
+        for (Book book : books) {
+            System.out.println(book.getId());
+            bookGetDTOs.add(DTOMapper.INSTANCE.convertEntityToBookGetDTO(book));
+        }
+        return bookGetDTOs;
     }
 
 
