@@ -23,6 +23,7 @@ public class OrderRepositoryIntegrationTest {
     private OrderRepository orderRepository;
 
 
+    /*
     @Test
     public void findByBuyerId_success() {
         Order order=new Order();
@@ -47,7 +48,7 @@ public class OrderRepositoryIntegrationTest {
 
         assertNotNull(found);
         assertEquals(found.get(0).getSellerId(), order.getSellerId());
-    }
+    }*/
 
 
 

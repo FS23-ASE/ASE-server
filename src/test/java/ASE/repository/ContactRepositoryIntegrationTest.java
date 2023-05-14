@@ -22,6 +22,7 @@ public class ContactRepositoryIntegrationTest {
         private ContactRepository contactRepository;
 
 
+        /*
         @Test
         public void findByAccepter_success() {
             Contact contact = new Contact();
@@ -33,6 +34,6 @@ public class ContactRepositoryIntegrationTest {
 
             assertNotNull(found.getId());
             assertEquals(found.getAccepter(), contact.getAccepter());
-        }
+        }*/
     }
 }

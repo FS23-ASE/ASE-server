@@ -89,7 +89,7 @@ public class UserController {
         User user = userService.getUserbyid(id);
         User userInput = DTOMapper.INSTANCE.convertUserPostDTOtoEntity(userPostDTO);
         if (user == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Can't find user!");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Can't find user!Please Login!");
         }
         else {
             userService.update(user, userInput);
