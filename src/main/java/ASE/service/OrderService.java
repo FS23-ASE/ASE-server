@@ -83,6 +83,13 @@ public class OrderService {
         return newOrder;
     }
 
+    public void setStatus(Long id,String status){
+        Order order=getOrderById(id);
+        order.setStatus(status);
+        orderRepository.flush();
+
+    }
+
 
 
 

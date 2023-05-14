@@ -3,10 +3,14 @@ package ASE.controller;
 import ASE.entity.Book;
 import ASE.entity.Cart;
 import ASE.entity.Order;
+import ASE.repository.OrderRepository;
+import ASE.repository.UserRepository;
 import ASE.rest.dto.*;
 import ASE.rest.mapper.DTOMapper;
 import ASE.service.CartService;
 import ASE.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +28,7 @@ import java.util.List;
 @RestController
 public class OrderController {
     private final OrderService orderService;
+
 
     OrderController(OrderService orderService) {
         this.orderService = orderService;
@@ -76,6 +81,30 @@ public class OrderController {
         }
         return bookGetDTOs;
     }
+
+    @PutMapping("/order/received/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public void receiveOrder(@PathVariable("id") Long id){
+        Order order = orderService.getOrderById(id);
+        System.out.println(order.getStatus());
+        orderService.setStatus(id,"RECEIVED");
+        System.out.println(order.getStatus());
+    }
+
+    @PutMapping("/order/cancel/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public void cancelOrder(@PathVariable("id") Long id){
+        Order order = orderService.getOrderById(id);
+        System.out.println(order.getStatus());
+        orderService.setStatus(id,"CANCELLED");
+        System.out.println(order.getStatus());
+    }
+
+
+
+
 
 
 }
