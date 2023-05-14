@@ -10,7 +10,7 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
 
     Contact findById(long id);
 
-    Contact findBySender(long sender);
+    List<Contact> findBySender(long sender);
 
-    Contact findByAccepter(long accepter);
+    List<Contact> findByAccepter(long accepter);
 }

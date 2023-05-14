@@ -38,9 +38,13 @@ public class ContactController {
     @GetMapping("/contactform/accepter/{accepter}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public ContactGetDTO getContactByAccepter(@PathVariable("accepter") Long accepter) {
-        Contact contact = contactService.getContactByAccepter(accepter);
-        return DTOMapper.INSTANCE.convertEntityToContactGetDTO(contact);
+    public List<ContactGetDTO> getContactByAccepter(@PathVariable("accepter") Long accepter) {
+        List<Contact> contacts = contactService.getContactByAccepter(accepter);
+        List<ContactGetDTO> contactGetDTOs = new ArrayList<>();
+        for (Contact contact:contacts) {
+            contactGetDTOs.add(DTOMapper.INSTANCE.convertEntityToContactGetDTO(contact));
+        }
+        return contactGetDTOs;
     }
 }
 
