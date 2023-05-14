@@ -27,7 +27,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
      * Retrieves an order by the buyer ID.
      *
      * @param buyerId the ID of the buyer
-     * @return the order associated with the buyer ID
+     * @return the orders associated with the buyer ID
      */
     List<Order> findByBuyerId(long buyerId);
 
@@ -35,7 +35,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
      * Retrieves an order by the seller ID.
      *
      * @param sellerId the ID of the seller
-     * @return the order associated with the seller ID
+     * @return the orders associated with the seller ID
      */
     List<Order> findBySellerId(long sellerId);
 
