@@ -38,4 +38,12 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
      * @return the order associated with the seller ID
      */
     List<Order> findBySellerId(long sellerId);
+
+    /**
+     * Delete an order according to its id
+     *
+     * @param id the ID of the order
+     *
+     */
+    void deleteById(long id);
 }

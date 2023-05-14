@@ -1,5 +1,7 @@
 package ASE.service;
 
+import ASE.entity.Book;
+import ASE.entity.Cart;
 import ASE.entity.Order;
 import ASE.repository.BookRepository;
 import ASE.repository.CartRepository;
@@ -83,7 +85,23 @@ public class OrderService {
         return newOrder;
     }
 
+    /**
+     * Deletes an order.
+     *
+     * @param id   the ID of the order to delete
+     */
+    public void deleteOrder(long id) {
+        orderRepository.deleteById(id);
+    }
 
-
-
+    /**
+     * Updates the status of an order.
+     *
+     * @param order   the order to update
+     * @param status  the new status
+     */
+    public void update(Order order, String status) {
+        order.setStatus(status);
+        orderRepository.save(order);
+    }
 }

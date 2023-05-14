@@ -7,9 +7,21 @@ import ASE.rest.dto.*;
 import ASE.rest.mapper.DTOMapper;
 import ASE.service.CartService;
 import ASE.service.OrderService;
+import com.amazonaws.SdkClientException;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.client.builder.AwsClientBuilder;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,6 +87,22 @@ public class OrderController {
             bookGetDTOs.add(DTOMapper.INSTANCE.convertEntityToBookGetDTO(book));
         }
         return bookGetDTOs;
+    }
+
+    @DeleteMapping("/order/{id}")
+    public void deleteOrder(@PathVariable Long id) {
+        orderService.deleteOrder(id);
+    }
+
+    @PutMapping("/order/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public void updateOrderStatus(@PathVariable Long id, @RequestParam(required = true) String status) {
+        Order order = orderService.getOrderById(id);
+        if(order == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Can't find order!");
+        }
+        orderService.update(order,status);
     }
 
 
