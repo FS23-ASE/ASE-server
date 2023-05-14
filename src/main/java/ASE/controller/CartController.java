@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -42,9 +43,13 @@ public class CartController {
     @PostMapping("/cart/{userId}/{bookId}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public void addBookToCart(@PathVariable("userId") Long userId,@PathVariable("bookId") Long bookId) {
-        cartService.addBookToCart(userId, bookId);
+    public void addBookToCart(@PathVariable("userId") Long userId, @PathVariable("bookId") Long bookId, @RequestBody Map<String, Object> requestBody) {
+        System.out.println("Received request to add book to cart with userId {} and bookId {}" + userId + bookId);
+        Long userIdFromRequestBody = Long.parseLong(requestBody.get("userId").toString());
+        Long bookIdFromRequestBody = Long.parseLong(requestBody.get("bookId").toString());
+        cartService.addBookToCart(userIdFromRequestBody, bookIdFromRequestBody);
     }
+
 
     @DeleteMapping("/cart/{userId}/{bookId}")
     public void deleteBookFromCart(@PathVariable Long userId, @PathVariable Long bookId) {
