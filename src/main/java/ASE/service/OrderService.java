@@ -4,6 +4,7 @@ import ASE.entity.Order;
 import ASE.repository.BookRepository;
 import ASE.repository.CartRepository;
 import ASE.repository.OrderRepository;
+import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +80,15 @@ public class OrderService {
         log.debug("Created Information for Order: {}", newOrder);
 
         return newOrder;
+    }
+
+    public void deleteOrderById(Long id) {
+        Order order = getOrderById(id);
+        if (order != null) {
+            orderRepository.delete(order);
+        } else {
+            throw new RuntimeException("No such order");
+        }
     }
 
 

@@ -77,5 +77,18 @@ public class OrderController {
         return bookGetDTOs;
     }
 
+    @PutMapping("/order/receive/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public void receiveOrder(@PathVariable("Id") Long id){
+        Order order = orderService.getOrderById(id);
+        order.setStatus("RECEIVED");
+    }
 
+    @DeleteMapping("/order/delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public void deleteOrder(@PathVariable("Id") Long id){
+        orderService.deleteOrderById(id);
+    }
 }
