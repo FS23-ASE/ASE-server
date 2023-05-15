@@ -13,6 +13,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * works.
  */
 public class DTOMapperTest {
+
+    /**
+     * Test case for creating a User entity from UserPostDTO and mapping it back to User successfully.
+     */
     @Test
     public void testCreateUser_fromUserPostDTO_toUser_success() {
         // create UserPostDTO
@@ -26,6 +30,9 @@ public class DTOMapperTest {
         assertEquals(userPostDTO.getUsername(), user.getUsername());
     }
 
+    /**
+     * Test case for creating a UserGetDTO from User and mapping it back to User successfully.
+     */
     @Test
     public void testGetUser_fromUser_toUserGetDTO_success() {
         // create User

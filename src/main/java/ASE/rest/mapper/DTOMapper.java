@@ -1,9 +1,6 @@
 package ASE.rest.mapper;
 
-import ASE.entity.Cart;
-import ASE.entity.Order;
-import ASE.entity.User;
-import ASE.entity.Book;
+import ASE.entity.*;
 import ASE.rest.dto.*;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
@@ -41,7 +38,6 @@ public interface DTOMapper {
     @Mapping(source = "email", target = "email")
     @Mapping(source = "address", target = "address")
     UserGetDTO convertEntityToUserGetDTO(User user);
-
 
     @Mapping(source = "name", target = "name")
     @Mapping(source = "author", target = "author")
@@ -100,6 +96,18 @@ public interface DTOMapper {
     @Mapping(source = "date", target = "date")
     OrderGetDTO convertEntityToOrderGetDTO(Order order);
 
+    @Mapping(source = "sender", target = "sender")
+    @Mapping(source = "accepter", target = "accepter")
+    @Mapping(source = "orderId", target = "orderId")
+    @Mapping(source = "msg", target = "msg")
+    Contact convertContactPostDTOtoEntity(ContactPostDTO contactPostDTO);
+
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "sender", target = "sender")
+    @Mapping(source = "accepter", target = "accepter")
+    @Mapping(source = "orderId", target = "orderId")
+    @Mapping(source = "msg", target = "msg")
+    ContactGetDTO convertEntityToContactGetDTO(Contact contact);
 
 
 

@@ -4,6 +4,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Internal Cart Representation
+ * This class composes the internal representation of the cart and defines how
+ * the cart is stored in the database.
+ * Every variable will be mapped into a database field with the @Column
+ * annotation
+ * - nullable = false -> this cannot be left empty
+ */
 @Entity
 @Table(name = "CART")
 public class Cart implements Serializable {

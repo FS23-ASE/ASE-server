@@ -14,6 +14,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
+/**
+ * The OrderServiceTest class is responsible for testing the OrderService functionality.
+ */
 public class OrderServiceTest {
     private OrderService orderService;
 
@@ -26,38 +29,54 @@ public class OrderServiceTest {
         orderService = new OrderService(orderRepository);
     }
 
+
+    /**
+     * Test case for retrieving an order by the buyer ID from the OrderRepository and verifying the result.
+     */
     @Test
     public void testGetOrderByBuyerId(){
         // given
         long buyerid = 1L;
         Order order=new Order();
         order.setBuyerId(buyerid);
-        when(orderRepository.findByBuyerId(buyerid)).thenReturn(order);
+        List<Order> orders=new ArrayList<>();
+        orders.add(order);
+        when(orderRepository.findByBuyerId(buyerid)).thenReturn(orders);
 
         // when
-        Order result=orderService.getOrderByBuyerId(buyerid);
+        List<Order> result=orderService.getOrderByBuyerId(buyerid);
 
         // then
-        assertEquals(1L, result.getBuyerId());
+        assertEquals(1, result.size());
         verify(orderRepository, times(1)).findByBuyerId(buyerid);
     }
 
+
+    /**
+     * Test case for retrieving an order by the seller ID from the OrderRepository and verifying the result.
+     */
     @Test
     public void testGetOrderBySellerId(){
         // given
         long sellerid = 1L;
         Order order=new Order();
         order.setSellerId(sellerid);
-        when(orderRepository.findBySellerId(sellerid)).thenReturn(order);
+        List<Order> orders=new ArrayList<>();
+        orders.add(order);
+        when(orderRepository.findBySellerId(sellerid)).thenReturn(orders);
 
         // when
-        Order result=orderService.getOrderBySellerId(sellerid);
+        List<Order> result=orderService.getOrderBySellerId(sellerid);
 
         // then
-        assertEquals(1L, result.getSellerId());
+        assertEquals(1, result.size());
         verify(orderRepository, times(1)).findBySellerId(sellerid);
     }
 
+
+    /**
+     * Test case for creating an order in the OrderRepository and verifying the result.
+     */
     @Test
     public void testCreateOrder(){
         Book newBook=new Book();

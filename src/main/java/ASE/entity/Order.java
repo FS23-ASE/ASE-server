@@ -7,7 +7,14 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ * Internal Order Representation
+ * This class composes the internal representation of the order and defines how
+ * the order is stored in the database.
+ * Every variable will be mapped into a database field with the @Column
+ * annotation
+ * - nullable = false -> this cannot be left empty
+ */
 @Entity
 @Table(name = "ORDERS")
 public class Order {
@@ -23,8 +30,8 @@ public class Order {
     @Column(nullable = false)
     private Long sellerId;
 
-    @ElementCollection
-    private List<Long> books;
+    @OneToMany
+    private List<Book> books;
 
     @Column(nullable = false)
     private double amount;
@@ -60,11 +67,11 @@ public class Order {
         this.sellerId=sellerId;
     }
 
-    public List<Long> getBooks(){
+    public List<Book> getBooks(){
         return books;
     }
 
-    public void setBooks(List<Long> books){
+    public void setBooks(List<Book> books){
         this.books=books;
     }
 

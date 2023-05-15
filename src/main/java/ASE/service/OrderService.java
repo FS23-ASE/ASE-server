@@ -11,6 +11,16 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+
+/**
+ * Order Service
+ * This class is the "worker" and responsible for all functionality related to
+ * the order
+ * (e.g., it creates, modifies, deletes, finds). The result will be passed back
+ * to the caller.
+ */
 @Service
 @Transactional
 public class OrderService {
@@ -23,18 +33,45 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
+    /**
+     * Retrieves an order by its ID.
+     *
+     * @param id  the ID of the order to retrieve
+     * @return the retrieved order
+     */
     public Order getOrderById(long id){
         return this.orderRepository.findById(id);
     }
 
-    public Order getOrderByBuyerId(long buyerId){
+    /**
+     * Retrieves an order by the buyer's ID.
+     *
+     * @param buyerId  the ID of the buyer
+     * @return the retrieved order
+     */
+    public List<Order> getOrderByBuyerId(long buyerId){
         return this.orderRepository.findByBuyerId(buyerId);
     }
 
-    public Order getOrderBySellerId(long sellerId){
+    /**
+     * Retrieves an order by the seller's ID.
+     *
+     * @param sellerId  the ID of the seller
+     * @return the retrieved order
+     */
+    public List<Order> getOrderBySellerId(long sellerId){
         return this.orderRepository.findBySellerId(sellerId);
     }
 
+
+
+
+    /**
+     * Creates a new order.
+     *
+     * @param newOrder  the order to create
+     * @return the created order
+     */
     public Order createOrder(Order newOrder){
 
         newOrder = orderRepository.save(newOrder);
@@ -42,7 +79,14 @@ public class OrderService {
         orderRepository.flush();
 
         log.debug("Created Information for Order: {}", newOrder);
+
         return newOrder;
+    }
+
+    public void setStatus(Long id,String status){
+        Order order=getOrderById(id);
+        order.setStatus(status);
+        orderRepository.flush();
 
     }
 

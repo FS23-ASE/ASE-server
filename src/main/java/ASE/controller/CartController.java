@@ -2,6 +2,7 @@ package ASE.controller;
 
 import ASE.entity.Book;
 import ASE.entity.Cart;
+import ASE.entity.Order;
 import ASE.entity.User;
 import ASE.rest.dto.*;
 import ASE.rest.mapper.DTOMapper;
@@ -13,7 +14,16 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+
+/**
+ * Cart Controller
+ * This class is responsible for handling all REST request that are related to
+ * the cart.
+ * The controller will receive the request and delegate the execution to the
+ * CartService and finally return the result.
+ */
 @RestController
 public class CartController {
     private final CartService cartService;
@@ -33,9 +43,13 @@ public class CartController {
     @PostMapping("/cart/{userId}/{bookId}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
-    public void addBookToCart(@PathVariable("userId") Long userId,@PathVariable("bookId") Long bookId) {
-        cartService.addBookToCart(userId, bookId);
+    public void addBookToCart(@PathVariable("userId") Long userId, @PathVariable("bookId") Long bookId, @RequestBody Map<String, Object> requestBody) {
+        System.out.println("Received request to add book to cart with userId {} and bookId {}" + userId + bookId);
+        Long userIdFromRequestBody = Long.parseLong(requestBody.get("userId").toString());
+        Long bookIdFromRequestBody = Long.parseLong(requestBody.get("bookId").toString());
+        cartService.addBookToCart(userIdFromRequestBody, bookIdFromRequestBody);
     }
+
 
     @DeleteMapping("/cart/{userId}/{bookId}")
     public void deleteBookFromCart(@PathVariable Long userId, @PathVariable Long bookId) {
@@ -46,7 +60,7 @@ public class CartController {
     @PostMapping("/cart")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
-    public CartGetDTO createUser(@RequestBody CartPostDTO cartPostDTO) {
+    public CartGetDTO createCart(@RequestBody CartPostDTO cartPostDTO) {
         // convert API user to internal representation
         Cart cartInput = DTOMapper.INSTANCE.convertCartPostDTOtoEntity(cartPostDTO);
 
@@ -55,6 +69,11 @@ public class CartController {
         // convert internal representation of user back to API
         return DTOMapper.INSTANCE.convertEntityToCartGetDTO(createdCart);
     }
+
+    @PostMapping("/cart/order/{userId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public void createOrder(@PathVariable("userId") Long userId) {cartService.createOrder(userId);}
 
     @GetMapping("/cart/books/{userId}")
     @ResponseStatus(HttpStatus.OK)

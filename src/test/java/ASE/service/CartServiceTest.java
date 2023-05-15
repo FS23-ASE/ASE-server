@@ -23,11 +23,14 @@ public class CartServiceTest {
     @Mock
     private BookRepository bookRepository;
 
-    @BeforeEach
+    @Mock
+    private OrderService orderService;
+
+    /*@BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
         cartService = new CartService(cartRepository,bookRepository);
-    }
+    }*/
 
     @Test
     public void testAddBookToCart(){

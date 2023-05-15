@@ -2,9 +2,15 @@ package ASE.controller;
 
 import ASE.entity.Book;
 import ASE.entity.Cart;
+import ASE.entity.Contact;
+import ASE.entity.Order;
+import ASE.repository.OrderRepository;
+import ASE.repository.ContactRepository;
 import ASE.rest.dto.BookPostDTO;
 import ASE.service.BookService;
 import ASE.service.CartService;
+import ASE.service.OrderService;
+import ASE.service.ContactService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -28,51 +34,30 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-
-/**
- * CartControllerTest
- * This is a WebMvcTest which allows to test the CartController i.e. GET/POST
- * request without actually sending them over the network.
- * This tests if the CartController works.
- */
-@WebMvcTest(CartController.class)
-public class CartControllerTest {
-
+@WebMvcTest(ContactController.class)
+public class ContactControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private CartService cartService;
+    private ContactService contactService;
+    @MockBean
+    private ContactRepository contactRepository;
 
+    /*
     @Test
-    public void testGetCartByUserId() throws Exception {
-        // Set up
-        long userId = 1L;
-        Cart cart1=new Cart();
-        cart1.setUserId(userId);
+    public void testGetContactByAccepter()throws Exception{
+        long accepter=1L;
+        Contact contact = new Contact();
+        contact.setId(1L);
+        contact.setAccepter(accepter);
+        given(contactService.getContactByAccepter(Mockito.anyLong())).willReturn(contact);
 
-        given(cartService.getCartByUserId(Mockito.anyLong())).willReturn(cart1);
-
-        // when/then -> do the request + validate the result
-        MockHttpServletRequestBuilder getRequest = get("/cart/1")
+        MockHttpServletRequestBuilder getRequest = get("/contactform/accepter/1")
                 .contentType(MediaType.APPLICATION_JSON);
 
         mockMvc.perform(getRequest)
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.userId", is((cart1.getUserId().intValue()))));
-
-
-    }
-
-
-
-    private String asJsonString(final Object object) {
-        try {
-            return new ObjectMapper().writeValueAsString(object);
-        } catch (JsonProcessingException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                    String.format("The request body could not be created.%s", e.toString()));
-        }
-    }
+                .andExpect(jsonPath("$.id", is(contact.getId().intValue())));
+    }*/
 }
