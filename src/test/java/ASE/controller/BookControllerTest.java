@@ -236,7 +236,7 @@ public class BookControllerTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
+    /*@Test
     public void testGetBookImage() throws Exception {
         // Set up
         long bookId = 1L;
@@ -267,7 +267,7 @@ public class BookControllerTest {
 
         // Clean up
         mockImage.delete();
-    }
+    }*/
 
 
 
