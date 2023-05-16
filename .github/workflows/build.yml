@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - Sprint-4
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
