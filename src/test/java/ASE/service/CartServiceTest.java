@@ -44,4 +44,9 @@ public class CartServiceTest {
     public void testGetCartByUserId(){
 
     }
+
+    @Test
+    public void testDeleteBookFromCart(){
+
+    }
 }
