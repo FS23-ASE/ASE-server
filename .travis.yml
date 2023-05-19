@@ -15,4 +15,4 @@ addons:
       secure: "e772a2968b05dfc729002ee603907f77d3e70ff8" # encrypted value of your token
 
 script:
-  - ./gradlew sonarqube
+  - ./gradlew sonar
