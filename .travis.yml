@@ -1,18 +1,18 @@
 language: java
-
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
 addons:
   sonarcloud:
-    organization: "fs23-ase"
+    organization: fs23-ase
     token:
-      secure: "ceeee89783a8493cb4df02af9f6552b4f2a7d1f5"
-
+      secure: ceeee89783a8493cb4df02af9f6552b4f2a7d1f5
 script:
-  - ./gradlew sonar --debug
+- "./gradlew sonar --info"
+env:
+  global:
+    secure: h/dU7D9PIt3sShcLkTo7FpVo2xxaU1pcXAjvWttYPrwxDNJmRKIBlX22Yc2Nh/LdUUW4VTOSIPRPwnxOQzgZvmTkeSJQTe94kWspOGDOPBoe8Oxwc9P7XmxwqXblTw+0yNhE/Les/Yn9hq8S8IKDgZ7f/4yZ00XZchJJQRjY0nIczD+0cj8tgdDE/NperVOktlQTxVL92C3ODVahHouRm6iyF1Fnjr3isgSK4QZdQW1tbOIBD4bOhvN3ch81TI8bXQaEsXjw7fls6BXd0H3emdaC88cfzlAqNaW+aaTAxyj5r0ajAKntl+9BzxlLtBkyOMUFVl1WxYjBaggpXBJdCSjlfI+4yFonpfjbQ42A2NLMJAJMhnCaSp/Vi4thHb3JhS56oqn6Vpmah7PQvv2Dkx+L/yrBNyjWpxAh/UQ042OynFHR9KeZ6oaChq11BPDPuhPGoGWYfUeXeQ17ORF+H4fJjX/5aiduIS+/jV4UnaNGdNh+5P/s3EPblxYi5WqmvjGPYSt97rmliSM7MstXffiaAw/2ERJ3Igx5qlNGadxlxhKJzCF4InToCKX/sVHSU4JkcVGrX7HWAJgqWy9Tx4SXP1/KzDQhYyXKxYsfdo/vw/WBeY9Qffnob5zT7hzb2ZWmU7bvWqB8TtqjM72VgxTarYJN+oF+BCyctS7+z4M=
