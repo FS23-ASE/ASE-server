@@ -15,4 +15,4 @@ addons:
       secure: "ceeee89783a8493cb4df02af9f6552b4f2a7d1f5"
 
 script:
-  - ./gradlew sonar
+  - ./gradlew sonar --info
