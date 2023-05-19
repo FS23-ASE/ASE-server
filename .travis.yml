@@ -12,7 +12,7 @@ addons:
   sonarcloud:
     organization: "FS23-ASE"
     token:
-      secure: "e772a2968b05dfc729002ee603907f77d3e70ff8"
+      secure: "ceeee89783a8493cb4df02af9f6552b4f2a7d1f5"
 
 script:
   - ./gradlew sonarqube
