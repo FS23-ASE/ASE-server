@@ -1,15 +1,9 @@
 language: java
-before_cache:
-- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-cache:
-  directories:
-  - "$HOME/.gradle/caches/"
-  - "$HOME/.gradle/wrapper/"
+
 addons:
   sonarcloud:
     organization: fs23-ase
     token:
-      secure: "YE4enDl9Bi5HOX/Z+inBKFwBpf09OXxV1bU4uOSYt01vmJqG+ZHbWR5Osq9X+LzAxz6albrS2F3gqwqRaf9vNyWRO3QjkGWAjJuDqnDVO1+vLmqC8GhF/5kaWHBlkZ76GAs6fcYzPGL1ah7Bxhr9VFdt8fx1Z8C2iZNCuXZclUZ5/MH+vx3oc2/MTlTQWtW0rQXrsNZ9UACE+aso4rb3blKjBlwxdYU0sqElXaUarz/Q00JBhRCZFOdFygCcQc6f7Cdy6RLgj5CxzkawdCnLChXaRKShmBZnpeBKwnymhq/eStTAItyg2GsGumlY+nhC13sSczPVBFpXBtFFFEfy0RRsilvGYJiQIACu9PTYawSSsIBoPdzF/CK4A2wQjuUo8qqd5beeQafEkopC7FRWjx1ein0CNlk/47VMZTxKS3ye+/ZYoudCDj5L64Hyanxxcuk2EEQ4/r9HV82XmMINEVigamv5tWlC2m/2yBQa959iR+cOWabQ/laKp3Ihz2o+gxmA5o3DPsK4noxxU6L7sMfk84OSL16SGWAXwaM21xLM2lNtrCOhYiDmluAmlWIroTb0GC7jmlKS7HGuf1yGhn1q9FahpGqds+HA4y2WTGSUTCMkzVILzaQe0ScTwPzgsrwioSxpA38J79e2AQ2AGIcb+auoHpW+I5ILjgtdoyY="
+      secure: "nlKJ0B8zx2+RTnh8w8F6VifHtR2mdg2b8/0w7iMj0pS6GIws5ircyda+w2oxocGJ6PcDXzdjMKky0ZouMEI8+nGn5ZlI20hnrps4V678Yz1W1g4VmaY0LjfGmE5r+xyqbp22mVTOCnAgbAV1vcxhp7KUAosJlfJI4Kq36OP4mm/hfX8t5RaphhAhjKWVJRQqoa3EGhuu+7vHBgrsAg0plEcgxrsbZJBUF6++Qyszu15VMw+v9CJiDJcJXr4YQlACkmMe/Czr0qy4ZurNbXj9HthI5XSgAvNZ61vmxuqRsYP6Gym7qrlUIuyGoKPz5Ssg4BmcqcBkiQEP6LAjvHQuohvqeqtQCEqfvGBsjCF7fI38wHYXjg6RMH1xpKDxID3zhnszTE0bQpc23fPNm0uRdYuiPAEh1lzvvrPsZL0JzFE8cKI+DTgo7J4kZeZo7C7rIeCujZgU4RQtxhC9LZJ+LsJHmDFar61kaaP7O3AWH2vSbPLcMXiehU2YyT6Ob6fOMOf+7tIOachFHL2FySqrPx9VSVXLPYOZcFFfLgUTbgiYN+FHC/XVmsTMdJ40mLx2tzIzLQs4n0nGcwewhg6auBC0AbukC5fiaIS3+bISx95IBFYlrmg65BL0pbRUbWVkaf7SUpAJbJ0Xa8chCMim6PZtTAmUvMTSWBeZoOqICTg="
 script:
-- "./gradlew sonar --info"
+  - ./gradlew sonar --info
