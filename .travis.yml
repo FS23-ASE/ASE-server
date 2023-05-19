@@ -1,5 +1,4 @@
 language: java
-script: true
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -7,3 +6,12 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+
+addons:
+  sonarcloud:
+    organization: "fs23-ase"
+    token:
+      secure: " "JjAvgkK0vGu5tJweY6yJMQs8t3LQONNXRpET5wMJGO4vzFgsORXkt5fqZfE41dicaeTiE+MUfM+BpkMU1nb2EJQful567QZUkw9RlLkamYUW+HSkWfzaIAdWv7uRQJ9fDYNVN3GEQIAdzrhQ+KopKffuPLjFHOwPrYH/glBjUa5EPQW6ExZxUdDyYPPSHjo0Hxzi3wYf7YzNqsIhHfZxda3GCYnWKg+WCERvgGgR+Sohrj+TZxtKpRVHrAH1HB+bqT3YNge1nG9YhV3nzMO/OSZRUtxR3psNQbqUs5LwtQwKvNfGLDnFizxMJC1/t+qSyhYw5XiTulNVA27KePpB26gcAujzfIzXj0WLGpMubEl0KS543y27vAZHmNbJa1uDaOiDvgqcfb/yJAxdbZpdeaMz0C7f2ynZ/ZgZTyubG77ZeH73HsB9ve2Kk+jeQf+JOSi3ywcU3E0WJVqB2GFbO/TIhzXxZhjpiVOEWTnItKY5t0yCPyWxbetxJMCRM0jPGIv0ZT8j9TsoebPWs22nGoZzYWYuvgBIav9tkS4MRNRZGKYQ73wrnFtMLl6q+9t8W6YOuHW7bUa6SmLAVMhBInOOP8UOekD8GZVNvalpUbvfl+ArZ9EMNyCIdVe30QisaqVSTAsjw5QoNlQfb/OzudbFNh8wvSLk+2hUtBA3lI0="" # encrypted value of your token
+
+script:
+  - ./gradlew sonarqube
