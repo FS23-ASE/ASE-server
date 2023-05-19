@@ -60,8 +60,6 @@ bootJar {
 sonarqube {
     properties {
         property "sonar.projectKey", "FS23-ASE_ASE-server"
-        property "sonar.organization", "fs23-ase"
-        property "sonar.host.url", "https://sonarcloud.io"
     }
 }
 
