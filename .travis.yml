@@ -12,6 +12,6 @@ addons:
   sonarcloud:
     organization: "fs23-ase"
     token:
-      secure: "JyzZsc89ZrMbeYS5SEWQHBIvbBGrzmujC4ef49QkwTBpGeI/QS1D2CcDUmtfMUDToR80tlwGA0KIBmW0KynoQzjntX4Z7ABOR2aarZ4u6RygG/xrVff592AxPJMwPfPPJUzCe0lTSqQr0mi4T+K3pk+T353lOSG3fwhZGIcdLpUvxCQmK/xk0sjGlh24e/mFqq06D7vfJpx2htxKrZH9acYoz1FKppi8pSoZMl4+R2cz+q8Oo/yrXJ3EbVvSf0mfSjqfgV4xiOyc/vWT4fZpqQQUalVoeV2PjaAmn3E0Yi4XS8cojmxfI5rGEQ+9I4kE1qh0CO2jjF+crpIIfB5Sdx2SCacHhLJByIj1RRjw+Gn0EnPOrx2PyQPZWs9HaQkVh+P+sZKVViSMGjZSeWmDF4dveEMJ/Q224BP3HLYV2+9i6MQeYGMTklKn8YoZjsDbDwsK8eAHchv5WM2d9I6GWsMF0BsdP0i2pupTxFfdfq7tBQuwg1t73uOMdOPLzHyLyXrwhqh5uhLDSqdesGlywXfZ6qKGmGV1FnFMSdeG4a3G+yRcYfh5T9VoLFSKkdogtlY01/5O+F/rZ1v/xgqv9qA9ldNlUDEjijyWU72UDUtZbl99ecYT5EUo+mOqHmEFotWkMXuzeV3gh/RaXG1tpKPCX+mrn2kzirWgX8CekZg="
+      secure: "78ffed8768ac6bbcaf96823ca65a826398d64836"
 script:
-  - ./gradlew sonarqube
+  - ./gradlew sonar --info
