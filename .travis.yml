@@ -10,9 +10,9 @@ cache:
 
 addons:
   sonarcloud:
-    organization: "fs23-ase"
+    organization: "FS23-ASE"
     token:
       secure: "hngMw2hsN/9WPpQh6ffy7odKcPS+nD10VV+ELwboLfGPwUMBdOVkYhcs3NlEmua0Iwh/Yz7FbA+oPYIXy+JcQhvBF4Y4f0vc27g7tVHDzUgILexMoIhSPg1PRVoiy7Nlab6IXyF3XBizgTeGJTFpZEuJDz4kJ0jtPl3+vV96G+vhKJfxaMHNE9T/oB4Yzga4V0/RsNfuE+ms9QBTPxx/CE8WopBzcCOkGD7VzSmGQrJZIv6DBgLS3PU7gKRqjv0bTpmn3OY6jNr9KEUG5D612CKJSk4q87swexW4MvO6ofv8VYgAVODN2QMIj1qfUKjuhcH1uam/YoFhVb2pszef4E3gn6JRBlmsgezgdFivTFM79lzo2pVNyUCHyT30fkjC2tu3ky7NYZXLWME5ojXbkGUVEL0dshcjCi4rsOnCYHQ9bvLg/k569JX8lBwyJjp5aDb6D775DVi9dlEVrDRoxeHQZH/dqSbgvXfnhF7+NYWyv3tnjlC/MBo7NLEwezZlTcwnnugs4HtseD+QGV6LrfqK3twIS+oE5WOpsvM3DxqlfviPcppTyHfumeANukEmkJ4BUDwkx4ySICkbYWX7bC15QVrC0eO6YgFbWpEjxHkNhYgDNXTqhqlNdjTeNyxUShpSZzf8PVaBzZVnHXvmMF5y9giyhLO4Dqf2636VS8s="
 
 script:
-  - ./gradlew sonar
+  - ./gradlew sonarqube
