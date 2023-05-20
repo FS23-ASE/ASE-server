@@ -58,6 +58,7 @@ bootJar {
     archiveFileName = "${archiveBaseName.get()}.${archiveExtension.get()}"
 }
 
+
 sonarqube {
     properties {
         property "sonar.projectKey", "FS23-ASE_ASE-server"
