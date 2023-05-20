@@ -61,6 +61,7 @@ bootJar {
 sonarqube {
     properties {
         property "sonar.projectKey", "FS23-ASE_ASE-server"
+        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/jacocoTestReport.xml"
     }
 }
 
@@ -69,23 +70,23 @@ test {
     testLogging.showStandardStreams = true
     maxParallelForks = 1
     jacoco {
-        // JaCoCo 配置，例如：
-        // 是否包括无源代码的类，默认为 false
-        includeNoLocationClasses = true
+        destinationFile = file("$buildDir/jacoco/test.exec")
     }
 }
 
 jacoco {
-    toolVersion = "0.8.7" // 可选，指定 JaCoCo 版本
+    toolVersion = "0.8.7"
+    reportsDir = file("$buildDir/reports/jacoco")
 }
-
 
 jacocoTestReport {
     reports {
-        xml.enabled = true // 生成 XML 报告
-        html.enabled = true // 生成 HTML 报告
+        xml.enabled true
+        html.enabled true
     }
 }
+
+
 
 
 File secretPropsFile = file('./local.properties')
