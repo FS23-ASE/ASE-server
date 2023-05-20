@@ -4,6 +4,7 @@ plugins {
     id 'java'
     id 'idea'
     id "org.sonarqube" version "3.5.0.2730"
+    id 'jacoco'
 }
 
 group 'ASE'
@@ -67,7 +68,25 @@ test {
     useJUnitPlatform()
     testLogging.showStandardStreams = true
     maxParallelForks = 1
+    jacoco {
+        // JaCoCo 配置，例如：
+        // 是否包括无源代码的类，默认为 false
+        includeNoLocationClasses = true
+    }
 }
+
+jacoco {
+    toolVersion = "0.8.7" // 可选，指定 JaCoCo 版本
+}
+
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // 生成 XML 报告
+        html.enabled = true // 生成 HTML 报告
+    }
+}
+
 
 File secretPropsFile = file('./local.properties')
 if (secretPropsFile.exists()) {
