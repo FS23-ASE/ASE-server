@@ -18,6 +18,15 @@ MySQL (for data storage)
 
 Docker (for containerization and deployment)
 
+## Architecture
+This project follows a client-server architecture, where the server is responsible for handling user requests and providing appropriate responses. The server is built using Java and Spring Boot, which provides a robust framework for building web applications. Gradle is used to manage dependencies and build the project. RESTful web services are used to communicate between the client and server.It follows a three-tier architecture and consists of the following modules:
+
+1.Controller Layer: Responsible for handling HTTP requests and responses. It routes user requests to the corresponding service layer for processing and returns the appropriate response. The controller layer interacts with DTOs to receive request payloads and send response payloads, ensuring proper data transfer between the frontend and backend.
+
+2.Service Layer: Implements the business logic and handles specific business requirements such as user management, book management, cart management, and order management. The service layer interacts with DTOs to receive data from the controller layer, performs necessary operations or validations, and returns data back to the controller layer.
+
+3.Data Access Layer: Handles interactions with the database. It provides operations for creating, reading, updating, and deleting data. The data access layer communicates with the service layer using entities or DTOs, retrieving or persisting data as required.
+
 ## REST Specification
 
 
@@ -65,14 +74,4 @@ After that the program is ready for use
 
 
 
-## Microservices
 
-The project consists of the following microservices:
-
-User Service: Handles user registration, authentication, and profile management.
-
-Book Service: Manages the book catalog, including book listing, search, and details.
-
-Order Service: Handles order processing, including placing orders, order tracking, and order history.
-
-Cart Service: Manages the shopping cart functionality, including adding/removing items and calculating the total amount.

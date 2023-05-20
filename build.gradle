@@ -4,6 +4,7 @@ plugins {
     id 'java'
     id 'idea'
     id "org.sonarqube" version "3.5.0.2730"
+    id 'jacoco'
 }
 
 group 'ASE'
@@ -61,8 +62,7 @@ bootJar {
 sonarqube {
     properties {
         property "sonar.projectKey", "FS23-ASE_ASE-server"
-        property "sonar.organization", "fs23-ase"
-        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
     }
 }
 
@@ -70,7 +70,24 @@ test {
     useJUnitPlatform()
     testLogging.showStandardStreams = true
     maxParallelForks = 1
+    jacoco {
+        destinationFile = file("$buildDir/jacoco/test.exec")
+    }
 }
+
+jacoco {
+    toolVersion = "0.8.7"
+    reportsDir = file("$buildDir/reports/jacoco")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+
+
+
 
 File secretPropsFile = file('./local.properties')
 if (secretPropsFile.exists()) {
