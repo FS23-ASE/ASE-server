@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
 /**
  * The BookServiceTest class is responsible for testing the BookService functionality.
  */
-public class BookServiceTest {
+class BookServiceTest {
 
     private BookService bookService;
 
@@ -34,7 +34,7 @@ public class BookServiceTest {
      * Test case for retrieving books from the BookRepository and verifying the result.
      */
     @Test
-    public void testGetBooks() {
+    void testGetBooks() {
         // given
         List<Book> books = new ArrayList<>();
         Book book1=new Book();
@@ -57,7 +57,7 @@ public class BookServiceTest {
      * Test case for creating a book in the BookRepository and verifying the result.
      */
     @Test
-    public void testCreateBook() {
+    void testCreateBook() {
         // given
         Book newBook=new Book();
         newBook.setName("book");
@@ -76,7 +76,7 @@ public class BookServiceTest {
      * Test case for retrieving a book by its ID from the BookRepository and verifying the result.
      */
     @Test
-    public void testGetBookById() {
+    void testGetBookById() {
         // given
         long id = 1L;
         Book book=new Book();
@@ -95,7 +95,7 @@ public class BookServiceTest {
      * Test case for validating the Book constructor.
      */
     @Test
-    public void testBookConstructor() {
+    void testBookConstructor() {
         String name = "The Great Gatsby";
         String author = "F. Scott Fitzgerald";
         String description = "A novel about the decadence of the Roaring Twenties.";
@@ -111,7 +111,7 @@ public class BookServiceTest {
         assertEquals(sellerid, book.getSellerid());
     }
     @Test
-    public void testUpdateBook() {
+    void testUpdateBook() {
         // Set up
 //        Long bookId = 1L;
 //        Book existingBook = new Book("The Great Gatsby", "F. Scott Fitzgerald", "A classic novel", "Scribner", 1L);
@@ -133,7 +133,7 @@ public class BookServiceTest {
     }
 
     @Test
-    public void testGetBookBySeller() {
+    void testGetBookBySeller() {
         // given
         long sellerid = 1L;
         List<Book> books = new ArrayList<>();

@@ -41,26 +41,6 @@ public class BookPostDTO {
     private String image;
 
 
-//    @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "@class")
-//    private Blob image;
-//    private String imagestring;
-//
-//    public String getImagestring() {
-//        return imagestring;
-//    }
-//
-//    public void setImagestring(String imagestring) {
-//        this.imagestring = imagestring;
-//    }
-//
-//    public Blob getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(Blob image) {
-//        this.image = image;
-//    }
-
     public Boolean getStatus() {
         return status;
     }

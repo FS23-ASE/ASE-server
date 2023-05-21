@@ -133,7 +133,6 @@ public class CartService {
         for(Book book:books){
             book.setStatus(false);
         }
-        System.out.println("checking out...");
         books.clear();
         return cart;
     }

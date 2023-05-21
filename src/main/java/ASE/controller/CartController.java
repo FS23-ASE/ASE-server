@@ -42,7 +42,6 @@ public class CartController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public void addBookToCart(@PathVariable("userId") Long userId, @PathVariable("bookId") Long bookId, @RequestBody Map<String, Object> requestBody) {
-        System.out.println("Received request to add book to cart with userId {} and bookId {}" + userId + bookId);
         Long userIdFromRequestBody = Long.parseLong(requestBody.get("userId").toString());
         Long bookIdFromRequestBody = Long.parseLong(requestBody.get("bookId").toString());
         cartService.addBookToCart(userIdFromRequestBody, bookIdFromRequestBody);
@@ -81,7 +80,6 @@ public class CartController {
         List<Book> books = cart.getBooks();
         List<BookGetDTO> bookGetDTOs = new ArrayList<>();
         for (Book book : books) {
-            System.out.println(book.getId());
             bookGetDTOs.add(DTOMapper.INSTANCE.convertEntityToBookGetDTO(book));
         }
         return bookGetDTOs;

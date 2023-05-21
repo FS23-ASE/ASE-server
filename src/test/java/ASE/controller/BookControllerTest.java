@@ -47,7 +47,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * This tests if the BookController works.
  */
 @WebMvcTest(BookController.class)
-public class BookControllerTest {
+class BookControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -56,7 +56,7 @@ public class BookControllerTest {
     private BookService bookService;
 
     @Test
-    public void givenBooks_whenGetBooks_thenReturnJsonArray() throws Exception {
+    void givenBooks_whenGetBooks_thenReturnJsonArray() throws Exception {
         // given
         Book book = new Book();
         book.setName("bookname");
@@ -80,7 +80,7 @@ public class BookControllerTest {
     }
 
     @Test
-    public void createBook_validInput_bookCreated() throws Exception {
+    void createBook_validInput_bookCreated() throws Exception {
         // given
         Book book = new Book();
         book.setId(1L);
@@ -152,7 +152,7 @@ public class BookControllerTest {
     //    }
 
     @Test
-    public void getBook_validInput_bookReturned() throws Exception {
+    void getBook_validInput_bookReturned() throws Exception {
         // given
         Book book = new Book();
         book.setId(1L);
@@ -172,7 +172,7 @@ public class BookControllerTest {
     }
 
     @Test
-    public void getBook_invalidInput_bookNotFound() throws Exception {
+    void getBook_invalidInput_bookNotFound() throws Exception {
         // given
         given(bookService.getBookbyid(Mockito.anyLong())).willReturn(null);
 
@@ -186,7 +186,7 @@ public class BookControllerTest {
     }
 
     @Test
-    public void testGetBookBySeller() throws Exception {
+    void testGetBookBySeller() throws Exception {
         // Set up
         long seller_id = 1L;
         Book book1 = new Book();
@@ -212,7 +212,7 @@ public class BookControllerTest {
 
     }
     @Test
-    public void testUpdateBook() throws Exception {
+    void testUpdateBook() throws Exception {
 // Set up
         Long bookId = 1L;
         Book book = new Book();

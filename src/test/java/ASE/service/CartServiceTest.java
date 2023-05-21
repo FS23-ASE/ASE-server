@@ -15,7 +15,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class CartServiceTest {
+class CartServiceTest {
 
     private CartService cartService;
 
@@ -34,7 +34,7 @@ public class CartServiceTest {
     }
 
     @Test
-    public void testAddBookToCart(){
+    void testAddBookToCart(){
         Book book=new Book();
         book.setId(1L);
         book.setPrice(10);
@@ -49,12 +49,12 @@ public class CartServiceTest {
 
         cartService.addBookToCart(2L,1L);
 
-        assertEquals(cart.getQuantity(),1);
+        assertEquals(1,cart.getQuantity());
         verify(cartRepository, times(1)).save(cart);
     }
 
     @Test
-    public void testGetCartbyId(){
+    void testGetCartbyId(){
         long id = 1L;
         Cart cart=new Cart();
         cart.setId(id);
@@ -69,7 +69,7 @@ public class CartServiceTest {
     }
 
     @Test
-    public void testGetCartByUserId(){
+    void testGetCartByUserId(){
         long userid = 1L;
         Cart cart=new Cart();
         cart.setUserId(userid);
@@ -84,7 +84,7 @@ public class CartServiceTest {
     }
 
     @Test
-    public void testDeleteBookFromCart(){
+    void testDeleteBookFromCart(){
         Book book=new Book();
         book.setId(2L);
         Cart cart=new Cart();
@@ -96,13 +96,13 @@ public class CartServiceTest {
 
         cartService.deleteBookFromCart(1L,2L);
 
-        assertEquals(cart.getBooks().size(),0);
+        assertEquals(0,cart.getBooks().size());
         verify(cartRepository, times(1)).save(cart);
 
     }
 
     @Test
-    public void testCreateCart(){
+    void testCreateCart(){
         Cart cart=new Cart();
         cart.setUserId(1L);
         when(cartRepository.save(cart)).thenReturn(cart);
@@ -115,7 +115,7 @@ public class CartServiceTest {
     }
 
     @Test
-    public void testCheckoutCart(){
+    void testCheckoutCart(){
         Book book=new Book();
         book.setId(2L);
         book.setStatus(true);
@@ -130,8 +130,8 @@ public class CartServiceTest {
 
         Cart result=cartService.checkoutCart(1L);
 
-        assertEquals(cart.getBooks().size(),0);
-        assertEquals(cart.getPrices(),0);
+        assertEquals(0,cart.getBooks().size());
+        assertEquals(0,cart.getPrices());
 
     }
 

@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(OrderController.class)
-public class OrderControllerTest {
+class OrderControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -37,7 +37,7 @@ public class OrderControllerTest {
 
 
     @Test
-    public void testGetOrderByBuyerId()throws Exception{
+    void testGetOrderByBuyerId()throws Exception{
         long buyerId=1L;
         Order order=new Order();
         order.setId(1L);
@@ -56,7 +56,7 @@ public class OrderControllerTest {
     }
 
     @Test
-    public void testGetOrderBySellerId()throws Exception{
+    void testGetOrderBySellerId()throws Exception{
         long sellerId=2L;
         Order order=new Order();
         order.setId(2L);
@@ -74,7 +74,7 @@ public class OrderControllerTest {
     }
 
     @Test
-    public void testGetOrderById()throws Exception{
+    void testGetOrderById()throws Exception{
         long id=2L;
         Order order=new Order();
         order.setId(id);
@@ -89,7 +89,7 @@ public class OrderControllerTest {
     }
 
     @Test
-    public void testGetBooks() throws Exception{
+    void testGetBooks() throws Exception{
         long id=2L;
         Order order=new Order();
         order.setId(id);
@@ -110,7 +110,7 @@ public class OrderControllerTest {
 
 
     @Test
-    public void testReceiveOrder() throws Exception{
+    void testReceiveOrder() throws Exception{
         long id=2L;
         Order order=new Order();
         order.setId(id);
@@ -125,7 +125,7 @@ public class OrderControllerTest {
     }
 
     @Test
-    public void testCancelOrder() throws Exception{
+    void testCancelOrder() throws Exception{
         long id=2L;
         Order order=new Order();
         order.setId(id);

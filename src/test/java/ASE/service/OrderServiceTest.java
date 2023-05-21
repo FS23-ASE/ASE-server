@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
 /**
  * The OrderServiceTest class is responsible for testing the OrderService functionality.
  */
-public class OrderServiceTest {
+class OrderServiceTest {
     private OrderService orderService;
 
     @Mock
@@ -34,7 +34,7 @@ public class OrderServiceTest {
      * Test case for retrieving an order by the buyer ID from the OrderRepository and verifying the result.
      */
     @Test
-    public void testGetOrderByBuyerId(){
+    void testGetOrderByBuyerId(){
         // given
         long buyerid = 1L;
         Order order=new Order();
@@ -56,7 +56,7 @@ public class OrderServiceTest {
      * Test case for retrieving an order by the seller ID from the OrderRepository and verifying the result.
      */
     @Test
-    public void testGetOrderBySellerId(){
+    void testGetOrderBySellerId(){
         // given
         long sellerid = 1L;
         Order order=new Order();
@@ -78,7 +78,7 @@ public class OrderServiceTest {
      * Test case for creating an order in the OrderRepository and verifying the result.
      */
     @Test
-    public void testCreateOrder(){
+    void testCreateOrder(){
         Book newBook=new Book();
         Order newOrder=new Order();
         newOrder.setBuyerId(2L);

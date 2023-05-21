@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 /**
  * The UserServiceTest class is responsible for testing the UserService functionality.
  */
-public class UserServiceTest {
+class UserServiceTest {
 
     @Mock
     private UserRepository userRepository;
@@ -58,7 +58,7 @@ public class UserServiceTest {
      * Test case for creating a user with valid inputs and verifying the result.
      */
     @Test
-    public void createUser_validInputs_success() {
+    void createUser_validInputs_success() {
         // when -> any object is being save in the userRepository -> return the dummy
         // testUser
         User createdUser = userService.createUser(testUser);
@@ -74,7 +74,7 @@ public class UserServiceTest {
      * Test case for creating a user with duplicate inputs and expecting an exception to be thrown.
      */
     @Test
-    public void createUser_duplicateInputs_throwsException() {
+    void createUser_duplicateInputs_throwsException() {
         // given -> a first user has already been created
         userService.createUser(testUser);
 
@@ -131,7 +131,7 @@ public class UserServiceTest {
      * Test case for retrieving a user by ID from the UserRepository and verifying the result.
      */
     @Test
-    public void testGetUserById() {
+    void testGetUserById() {
         // given
         long id = 1L;
         User user = new User();
@@ -150,7 +150,7 @@ public class UserServiceTest {
      * Test case for updating a user and verifying the result.
      */
     @Test
-    public void testUpdateUser() {
+    void testUpdateUser() {
         // create a User object to update
         User user = new User();
         user.setUsername("johndoe");
@@ -165,7 +165,7 @@ public class UserServiceTest {
         User updatedUser = userService.update(user, userToUpdate);
 
         // check that the updated User object has the correct values
-        assertEquals(updatedUser.getUsername(), "janedoe");
-        assertEquals(updatedUser.getEmail(), "janedoe@example.com");
+        assertEquals("janedoe",updatedUser.getUsername());
+        assertEquals("janedoe@example.com",updatedUser.getEmail());
     }
 }

@@ -38,7 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * This tests if the CartController works.
  */
 @WebMvcTest(CartController.class)
-public class CartControllerTest {
+class CartControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -47,7 +47,7 @@ public class CartControllerTest {
     private CartService cartService;
 
     @Test
-    public void testGetCartByUserId() throws Exception {
+    void testGetCartByUserId() throws Exception {
         // Set up
         long userId = 1L;
         Cart cart1=new Cart();
@@ -67,12 +67,12 @@ public class CartControllerTest {
     }
 
     @Test
-    public void testAddBookToCart(){
+    void testAddBookToCart(){
 
     }
 
     @Test
-    public void testCreateCart() throws Exception{
+    void testCreateCart() throws Exception{
 
         Cart cart=new Cart();
         cart.setId(1L);
@@ -96,7 +96,7 @@ public class CartControllerTest {
     }
 
     @Test
-    public void testGetBooks() throws Exception{
+    void testGetBooks() throws Exception{
         Cart cart=new Cart();
         cart.setUserId(2L);
 

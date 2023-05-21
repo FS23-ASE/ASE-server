@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * This tests if the UserController works.
  */
 @WebMvcTest(UserController.class)
-public class UserControllerTest {
+class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -45,7 +45,7 @@ public class UserControllerTest {
     private UserService userService;
 
     @Test
-    public void givenUsers_whenGetUsers_thenReturnJsonArray() throws Exception {
+    void givenUsers_whenGetUsers_thenReturnJsonArray() throws Exception {
         // given
         User user = new User();
         user.setUsername("firstname@lastname");
@@ -66,7 +66,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void createUser_validInput_userCreated() throws Exception {
+    void createUser_validInput_userCreated() throws Exception {
         // given
         User user = new User();
         user.setId(1L);
@@ -91,7 +91,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void createUser_invalidInput_usernameTaken() throws Exception {
+    void createUser_invalidInput_usernameTaken() throws Exception {
         // given
         UserPostDTO userPostDTO = new UserPostDTO();
         userPostDTO.setUsername("testUsername");
@@ -119,7 +119,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void updateUser_validInput_userUpdated() throws Exception {
+    void updateUser_validInput_userUpdated() throws Exception {
         // given
         User existingUser = new User();
         existingUser.setId(1L);
@@ -146,7 +146,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void updateUser_invalidInput_userNotFound() throws Exception {
+    void updateUser_invalidInput_userNotFound() throws Exception {
         // given
         User updatedUser = new User();
         updatedUser.setId(1L);
@@ -166,7 +166,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void getUser_validInput_userReturned() throws Exception {
+    void getUser_validInput_userReturned() throws Exception {
         // given
         User user = new User();
         user.setId(1L);
@@ -187,7 +187,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void getUser_invalidInput_userNotFound() throws Exception {
+    void getUser_invalidInput_userNotFound() throws Exception {
         // given
         given(userService.getUserbyid(Mockito.anyLong())).willReturn(null);
 
@@ -200,7 +200,7 @@ public class UserControllerTest {
                 .andExpect(status().isNotFound());
     }
     @Test
-    public void checkPassword_validInput() throws Exception {
+    void checkPassword_validInput() throws Exception {
         // given
         UserPostDTO userPostDTO = new UserPostDTO();
         userPostDTO.setUsername("testuser");

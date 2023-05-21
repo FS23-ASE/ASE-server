@@ -15,14 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 @DataJpaTest
 @Nested
-public class CartRepositoryIntegrationTest {
+class CartRepositoryIntegrationTest {
     @Autowired
     private TestEntityManager entityManager;
 
     @Autowired
     private CartRepository cartRepository;
     @Test
-    public void findByUserId_success() {
+    void findByUserId_success() {
         // given
         Cart cart = new Cart();
         cart.setUserId(1L);

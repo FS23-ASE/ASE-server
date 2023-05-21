@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DataJpaTest
 @Nested
-public class BookRepositoryIntegrationTest {
+class BookRepositoryIntegrationTest {
 
     @Autowired
     private TestEntityManager entityManager;
@@ -21,7 +21,7 @@ public class BookRepositoryIntegrationTest {
     @Autowired
     private BookRepository bookRepository;
     @Test
-    public void findByName_success() {
+    void findByName_success() {
         // given
         Book book = new Book();
         book.setName("bookname");

@@ -84,18 +84,6 @@ public class BookController {
         Book bookInput = DTOMapper.INSTANCE.convertBookPostDTOtoEntity(bookPostDTO);
         log.debug("Created Information for: {}", bookInput);
         Book createdBook = bookService.createBook(bookInput);
-//        if (image != null) {
-//            String fileName = StringUtils.cleanPath(image.getOriginalFilename());
-//            String uploadDir = "book-photos/" + createdBook.getId();
-//            File uploadDirPath = new File(uploadDir);
-//            if (!uploadDirPath.exists()) {
-//                uploadDirPath.mkdirs();
-//            }
-//            Path path = Paths.get(uploadDir + "/" + fileName);
-//            Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-//            bookInput.setImage(fileName);
-//        }
-//        bookService.update(createdBook, bookInput);
         // convert internal representation of book back to API
         return DTOMapper.INSTANCE.convertEntityToBookGetDTO(createdBook);
     }
@@ -149,7 +137,6 @@ public class BookController {
                 metadata.setContentType(image.getContentType());
                 s3Client.putObject(new PutObjectRequest(bucketName, id.toString(), image.getInputStream(), metadata));
                 updateBookInfo.setImage(id.toString());
-                System.out.println("Successfully uploaded to S3!");
                 log.info("Successfully uploaded to S3!");
 
             } catch (SdkClientException | IOException e) {

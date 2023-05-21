@@ -74,7 +74,6 @@ public class OrderController {
         List<Book> books = order.getBooks();
         List<BookGetDTO> bookGetDTOs = new ArrayList<>();
         for (Book book : books) {
-            System.out.println(book.getId());
             bookGetDTOs.add(DTOMapper.INSTANCE.convertEntityToBookGetDTO(book));
         }
         return bookGetDTOs;
@@ -85,9 +84,7 @@ public class OrderController {
     @ResponseBody
     public void receiveOrder(@PathVariable("id") Long id){
         Order order = orderService.getOrderById(id);
-        System.out.println(order.getStatus());
         orderService.setStatus(id,"RECEIVED");
-        System.out.println(order.getStatus());
     }
 
     @PutMapping("/order/shipped/{id}")
@@ -95,9 +92,7 @@ public class OrderController {
     @ResponseBody
     public void shipOrder(@PathVariable("id") Long id){
         Order order = orderService.getOrderById(id);
-        System.out.println(order.getStatus());
         orderService.setStatus(id,"SHIPPED");
-        System.out.println(order.getStatus());
     }
 
     @PutMapping("/order/cancel/{id}")
@@ -105,9 +100,7 @@ public class OrderController {
     @ResponseBody
     public void cancelOrder(@PathVariable("id") Long id){
         Order order = orderService.getOrderById(id);
-        System.out.println(order.getStatus());
         orderService.setStatus(id,"CANCELLED");
-        System.out.println(order.getStatus());
     }
 
 
