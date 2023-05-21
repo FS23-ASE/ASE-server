@@ -145,12 +145,8 @@ public class BookController {
 
             // S3 Bucket 相关信息
             String bucketName = "images";
-            String accessKey = "AKIAX3J2CPTK5L2ENODJ";
-            String secretKey = "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";
             String region = "us-east-1";
 
-            // 创建S3 Client
-            BasicAWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
             // 创建S3 Client
             AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
                     .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:4566", region))
@@ -190,8 +186,6 @@ public class BookController {
         }
 
         String bucketName = "images";
-        String accessKey = "AKIAX3J2CPTK5L2ENODJ";
-        String secretKey = "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";
         String region = "us-east-1";
         AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:4566", region))
