@@ -1,5 +1,6 @@
 package ASE.controller;
 
+import ASE.entity.Book;
 import ASE.entity.Order;
 import ASE.repository.OrderRepository;
 import ASE.service.BookService;
@@ -17,8 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -32,7 +35,7 @@ public class OrderControllerTest {
     @MockBean
     private OrderRepository orderRepository;
 
-    /*
+
     @Test
     public void testGetOrderByBuyerId()throws Exception{
         long buyerId=1L;
@@ -48,7 +51,8 @@ public class OrderControllerTest {
 
         mockMvc.perform(getRequest)
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(order.getId().intValue())));
+                .andExpect(jsonPath("$[0].id", is(order.getId().intValue())));
+
     }
 
     @Test
@@ -66,6 +70,72 @@ public class OrderControllerTest {
 
         mockMvc.perform(getRequest)
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id", is(order.getId().intValue())));
+    }
+
+    @Test
+    public void testGetOrderById()throws Exception{
+        long id=2L;
+        Order order=new Order();
+        order.setId(id);
+        given(orderService.getOrderById(Mockito.anyLong())).willReturn(order);
+
+        MockHttpServletRequestBuilder getRequest = get("/order/2")
+                .contentType(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(getRequest)
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(order.getId().intValue())));
-    }*/
+    }
+
+    @Test
+    public void testGetBooks() throws Exception{
+        long id=2L;
+        Order order=new Order();
+        order.setId(id);
+        Book book=new Book();
+        book.setId(1L);
+        List<Book> books=new ArrayList<>();
+        books.add(book);
+        order.setBooks(books);
+        given(orderService.getOrderById(Mockito.anyLong())).willReturn(order);
+
+        MockHttpServletRequestBuilder getRequest = get("/order/books/2")
+                .contentType(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(getRequest)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id", is(book.getId().intValue())));
+    }
+
+
+    @Test
+    public void testReceiveOrder() throws Exception{
+        long id=2L;
+        Order order=new Order();
+        order.setId(id);
+        order.setStatus("PAID");
+        given(orderService.getOrderById(Mockito.anyLong())).willReturn(order);
+
+        MockHttpServletRequestBuilder putRequest = put("/order/received/2")
+                .contentType(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(putRequest)
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testCancelOrder() throws Exception{
+        long id=2L;
+        Order order=new Order();
+        order.setId(id);
+        order.setStatus("PAID");
+        given(orderService.getOrderById(Mockito.anyLong())).willReturn(order);
+
+        MockHttpServletRequestBuilder putRequest = put("/order/cancel/2")
+                .contentType(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(putRequest)
+                .andExpect(status().isOk());
+    }
 }
