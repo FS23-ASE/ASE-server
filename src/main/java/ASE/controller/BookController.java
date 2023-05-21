@@ -217,9 +217,6 @@ public class BookController {
                     .body(resource);
         }
         else{
-            if (fileName == null) {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book has no book image!");
-            }
             String uploadDir = "book-photos/" + book.getId();
             Path path = Paths.get(uploadDir + "/" + fileName);
             Resource resource;
