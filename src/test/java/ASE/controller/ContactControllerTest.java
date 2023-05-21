@@ -71,6 +71,7 @@ class ContactControllerTest {
         mockMvc.perform(getRequest)
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].msg", is(contacts.get(0).getMsg())));
+
     }
 
 
