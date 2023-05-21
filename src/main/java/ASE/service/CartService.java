@@ -171,7 +171,6 @@ public class CartService {
 
             Order newOrder = orderService.createOrder(order);
 
-            // 可根据需要进一步处理新订单的逻辑
         }
     }
 
