@@ -77,8 +77,7 @@ public class UserService {
      * @return the retrieved user
      */
     public User getUserbyid(long id){
-        User user=userRepository.findById(id);
-        return user;
+        return userRepository.findById(id);
     }
 
     /**

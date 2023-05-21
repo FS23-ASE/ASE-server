@@ -88,7 +88,6 @@ public class BookService {
      */
     public void update(Book book, Book bookinput) {
         if (bookinput.getImage() != null) {
-            String updateImage = bookinput.getImage();
             book.setImage(bookinput.getImage());
         }
         bookRepository.save(book);

@@ -76,8 +76,7 @@ public class CartService {
      * @return the retrieved cart
      */
     public Cart getCartbyId(long id) {
-        Cart cart = cartRepository.findById(id);
-        return cart;
+        return cartRepository.findById(id);
     }
 
 

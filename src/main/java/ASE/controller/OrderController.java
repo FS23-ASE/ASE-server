@@ -83,7 +83,6 @@ public class OrderController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public void receiveOrder(@PathVariable("id") Long id){
-        Order order = orderService.getOrderById(id);
         orderService.setStatus(id,"RECEIVED");
     }
 
@@ -91,7 +90,6 @@ public class OrderController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public void shipOrder(@PathVariable("id") Long id){
-        Order order = orderService.getOrderById(id);
         orderService.setStatus(id,"SHIPPED");
     }
 
@@ -99,7 +97,6 @@ public class OrderController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public void cancelOrder(@PathVariable("id") Long id){
-        Order order = orderService.getOrderById(id);
         orderService.setStatus(id,"CANCELLED");
     }
 

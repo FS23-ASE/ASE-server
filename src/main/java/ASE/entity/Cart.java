@@ -31,8 +31,6 @@ public class Cart implements Serializable {
     @Column(nullable = false)
     private Long userId;
 
-    public Cart() {
-    }
 
     public Long getId() {
         return id;
