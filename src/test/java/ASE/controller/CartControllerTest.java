@@ -95,6 +95,27 @@ public class CartControllerTest {
                 .andExpect(jsonPath("$.userId", is(cart.getUserId().intValue())));
     }
 
+    @Test
+    public void testGetBooks() throws Exception{
+        Cart cart=new Cart();
+        cart.setUserId(2L);
+
+        Book book=new Book();
+        book.setId(1L);
+        List<Book> books=new ArrayList<>();
+        books.add(book);
+        cart.setBooks(books);
+
+        given(cartService.getCartByUserId(Mockito.anyLong())).willReturn(cart);
+
+        MockHttpServletRequestBuilder getRequest = get("/cart/books/2")
+                .contentType(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(getRequest)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].id", is((cart.getBooks().get(0).getId().intValue()))));
+    }
+
 
 
     private String asJsonString(final Object object) {

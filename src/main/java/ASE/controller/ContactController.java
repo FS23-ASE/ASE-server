@@ -6,7 +6,6 @@ import ASE.entity.Contact;
 import ASE.rest.dto.UserGetDTO;
 import ASE.rest.dto.UserPostDTO;
 import ASE.rest.dto.OrderGetDTO;
-import ASE.rest.dto.OrderPostDTO;
 import ASE.rest.dto.ContactGetDTO;
 import ASE.rest.dto.ContactPostDTO;
 import ASE.rest.mapper.DTOMapper;
