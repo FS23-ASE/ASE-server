@@ -3,13 +3,6 @@
 This is the server-side code for a Book E-Commerce web application developed by Group ASE as part of the FS23 Advanced Software Engineering course.
 
 
-## SonarCloud Badges:
-
-[![Bugs](https://sonarcloud.io/project/overview?id=FS23-ASE_ASE-server&metric=bugs)](https://sonarcloud.io/project/overview?id=FS23-ASE_ASE-server)
-[![Code Smells](https://sonarcloud.io/project/overview?id=FS23-ASE_ASE-server&metric=code_smells)](https://sonarcloud.io/project/overview?id=FS23-ASE_ASE-server)
-[![Coverage](https://sonarcloud.io/project/overview?id=FS23-ASE_ASE-server)](https://sonarcloud.io/project/overview?id=FS23-ASE_ASE-server)
-[![Vulnerabilities](https://sonarcloud.io/project/overview?id=FS23-ASE_ASE-server)](https://sonarcloud.io/project/overview?id=FS23-ASE_ASE-server)
-
 ## Technologies Used
 
 The project is built using the following technologies:
@@ -62,6 +55,13 @@ by running: brew install docker-compose
 
 ## How to run it
 
+The structure of this project is:
+
+- Root
+  |- ASE-client
+  |- ASE-server
+  |- docker-compose.yml
+
 ### LocalStack
 
 Here are the steps if you want to test this application using LocalStack.
@@ -93,6 +93,14 @@ Also add your_access_key and your_secret_key in the docker-compose.yml file.
 ### Deploy
 
 To quickly build and test the docker images, a docker-compose.yml file is in the root directory. 
+
+
+In the server folder, run:
+
+```bash
+./gradlew bootJar
+```
+
 In the root directory, start the deployment with:
 
 ```bash
