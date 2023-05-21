@@ -17,8 +17,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -52,7 +56,23 @@ class ContactControllerTest {
                 .andExpect(jsonPath("$.orderId", is(contact.getOrderId().intValue())));
     }
 
+    @Test
+    void testGetContactByAccepter() throws Exception{
+        Contact contact=new Contact();
+        contact.setAccepter(1L);
+        contact.setMsg("hello");
+        List<Contact> contacts=new ArrayList<>();
+        contacts.add(contact);
+        given(contactService.getContactByAccepter(Mockito.anyLong())).willReturn(contacts);
 
+        MockHttpServletRequestBuilder getRequest = get("/contactform/accepter/1")
+                .contentType(MediaType.APPLICATION_JSON);
+
+        mockMvc.perform(getRequest)
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].msg", is(contacts.get(0).getMsg())));
+
+    }
 
 
     private String asJsonString(final Object object) {
