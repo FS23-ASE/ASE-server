@@ -10,6 +10,7 @@ import ASE.service.BookService;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,6 +32,11 @@ import com.amazonaws.services.s3.model.S3Object;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,36 +119,55 @@ public class BookController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Can't find user!");
         }
         if (image != null) {
+            String fileName = StringUtils.cleanPath(image.getOriginalFilename());
             String uploadDir = "book-photos/" + id;
             File uploadDirPath = new File(uploadDir);
             if (!uploadDirPath.exists()) {
                 uploadDirPath.mkdirs();
             }
 
-            // S3 Bucket 相关信息
             String bucketName = "images";
             String region = "us-east-1";
 
-            // 创建S3 Client
-            AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-                    .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:4566", region))
-                    .withPathStyleAccessEnabled(true)
-                    .build();
-
-            // 上传图片到S3 Bucket
+            boolean isS3Available;
+            AmazonS3 s3Client=null;
             try {
-                ObjectMetadata metadata = new ObjectMetadata();
-                metadata.setContentLength(image.getSize());
-                metadata.setContentType(image.getContentType());
-                s3Client.putObject(new PutObjectRequest(bucketName, id.toString(), image.getInputStream(), metadata));
-                updateBookInfo.setImage(id.toString());
-                log.info("Successfully uploaded to S3!");
+                String s3Endpoint = "http://host.docker.internal:4566";
+                s3Client = AmazonS3ClientBuilder.standard()
+                        .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(s3Endpoint, region))
+                        .withPathStyleAccessEnabled(true)
+                        .build();
 
-            } catch (SdkClientException | IOException e) {
-                log.error(e.getMessage());
-                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to upload book image to S3 Bucket");
+                isS3Available = s3Client.doesBucketExistV2(bucketName);
+            } catch (SdkClientException e) {
+                isS3Available = false;
+            }
+            if (isS3Available) {
+
+                try {
+                    ObjectMetadata metadata = new ObjectMetadata();
+                    metadata.setContentLength(image.getSize());
+                    metadata.setContentType(image.getContentType());
+                    s3Client.putObject(new PutObjectRequest(bucketName, id.toString(), image.getInputStream(), metadata));
+                    updateBookInfo.setImage(id.toString());
+                    log.info("Successfully uploaded to S3!");
+
+                }
+                catch (SdkClientException | IOException e) {
+                    log.error(e.getMessage());
+                    throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to upload book image to S3 Bucket");
+                }
+            }
+            else{
+                if (!uploadDirPath.exists()) {
+                    uploadDirPath.mkdirs();
+                }
+                Path path = Paths.get(uploadDir + "/" + fileName);
+                Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+                updateBookInfo.setImage(fileName);
             }
         }
+
         bookService.update(bookToBeUpdated,updateBookInfo);
     }
 
@@ -159,25 +184,56 @@ public class BookController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book has no book image!");
         }
 
-        String bucketName = "images";
         String region = "us-east-1";
-        AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:4566", region))
-                .withPathStyleAccessEnabled(true)
-                .build();
-        S3Object s3Object = s3Client.getObject(bucketName, id.toString());
-        InputStream inputStream = s3Object.getObjectContent();
-
-        Resource resource;
+        boolean isS3Available;
+        AmazonS3 s3Client=null;
         try {
-            resource = new InputStreamResource(inputStream);
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book image not found!");
+            String s3Endpoint = "http://host.docker.internal:4566";
+            s3Client = AmazonS3ClientBuilder.standard()
+                    .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(s3Endpoint, region))
+                    .withPathStyleAccessEnabled(true)
+                    .build();
+
+            isS3Available = s3Client.doesBucketExistV2("images");
+        } catch (SdkClientException e) {
+            isS3Available = false;
         }
-        return ResponseEntity.ok()
-                .contentType(MediaType.IMAGE_JPEG)
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
-                .body(resource);
+        if (isS3Available) {
+
+
+            S3Object s3Object = s3Client.getObject("images", id.toString());
+            InputStream inputStream = s3Object.getObjectContent();
+
+            Resource resource;
+            try {
+                resource = new InputStreamResource(inputStream);
+            }
+            catch (Exception e) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book image not found!");
+            }
+            return ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileName + "\"")
+                    .body(resource);
+        }
+        else{
+            if (fileName == null) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book has no book image!");
+            }
+            String uploadDir = "book-photos/" + book.getId();
+            Path path = Paths.get(uploadDir + "/" + fileName);
+            Resource resource;
+            try {
+                resource = new UrlResource(path.toUri());
+            } catch (MalformedURLException e) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Book image not found!");
+            }
+            return ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + ((UrlResource) resource).getFilename() + "\"")
+                    .body(resource);
+        }
     }
+
 
 }
