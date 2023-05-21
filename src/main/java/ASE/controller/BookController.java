@@ -1,16 +1,15 @@
 package ASE.controller;
 
 import ASE.entity.Book;
-import ASE.entity.User;
+
 import ASE.rest.dto.BookGetDTO;
 import ASE.rest.dto.BookPostDTO;
-import ASE.rest.dto.UserGetDTO;
+
 import ASE.rest.mapper.DTOMapper;
 import ASE.service.BookService;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,29 +23,19 @@ import org.springframework.web.server.ResponseStatusException;
 
 
 import com.amazonaws.SdkClientException;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.model.S3ObjectInputStream;
-
-import javax.sql.rowset.serial.SerialBlob;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Blob;
+
 import java.sql.SQLException;
-import java.util.Base64;
+
 
 
 @RestController

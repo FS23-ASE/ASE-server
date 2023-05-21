@@ -4,10 +4,10 @@ package ASE.service;
 import ASE.entity.Book;
 import ASE.entity.Cart;
 import ASE.entity.Order;
-import ASE.entity.User;
+
 import ASE.repository.BookRepository;
 import ASE.repository.CartRepository;
-import ASE.rest.dto.CartGetDTO;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.text.DateFormat;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 

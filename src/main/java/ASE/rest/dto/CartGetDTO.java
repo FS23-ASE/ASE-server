@@ -1,11 +1,6 @@
 package ASE.rest.dto;
 
 import ASE.entity.Book;
-import ASE.entity.User;
-
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import java.util.List;
 
 public class CartGetDTO {

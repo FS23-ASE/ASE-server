@@ -1,8 +1,6 @@
 package ASE.rest.dto;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import java.sql.Blob;
 
 public class BookPostDTO {
 

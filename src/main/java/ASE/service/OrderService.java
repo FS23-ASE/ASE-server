@@ -1,8 +1,6 @@
 package ASE.service;
 
 import ASE.entity.Order;
-import ASE.repository.BookRepository;
-import ASE.repository.CartRepository;
 import ASE.repository.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

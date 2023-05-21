@@ -1,7 +1,6 @@
 package ASE.rest.dto;
 
-import javax.persistence.Column;
-import java.sql.Blob;
+
 
 public class BookGetDTO {
 

@@ -1,9 +1,6 @@
 package ASE.rest.dto;
 
-import ASE.entity.User;
-import ASE.entity.Order;
 
-import java.util.List;
 
 public class ContactGetDTO {
 

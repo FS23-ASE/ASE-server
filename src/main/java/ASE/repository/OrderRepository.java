@@ -1,8 +1,8 @@
 package ASE.repository;
 
-import ASE.entity.Cart;
+
 import ASE.entity.Order;
-import ASE.entity.User;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

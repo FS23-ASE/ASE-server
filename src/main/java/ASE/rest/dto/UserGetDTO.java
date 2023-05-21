@@ -1,7 +1,7 @@
 package ASE.rest.dto;
 
 
-import java.util.Date;
+
 
 public class UserGetDTO {
     private String username;
