@@ -8,7 +8,7 @@ RUN ./gradlew build --stacktrace
 
 FROM openjdk:17
 
-COPY build/libs/ASE.jar home/spring/application.jar
+COPY build/libs/ASE-server.jar home/spring/application.jar
 
 EXPOSE 8080
 
