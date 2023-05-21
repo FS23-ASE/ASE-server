@@ -18,6 +18,20 @@ MySQL (for data storage)
 
 Docker (for containerization and deployment)
 
+## Motivation
+
+1.Convenience: A second-hand book trading website offers readers a convenient platform to buy and sell books online. This means they can search, browse, and purchase used books anytime, anywhere, without the need to visit physical bookstores or markets.
+
+2.Cost savings: Buying used books is more affordable than purchasing brand new ones, especially for students, bookworms, or individuals on a tight budget. A second-hand book trading website can help readers find books at more reasonable prices, saving them money on their book purchases.
+
+3.Sustainable development: By promoting the reuse of second-hand books, a second-hand book trading website can contribute to sustainable development. It encourages readers to pass on books they no longer need to others, reducing waste and resource consumption.
+
+4.Expanded reading choices: A second-hand book trading website provides readers with a wider range of book options. Readers can find out-of-print books, rare books, or specific academic materials that may be difficult to locate in traditional bookstores or markets.
+
+5.Community engagement: A second-hand book trading website can serve as a community platform where readers can connect, share their experiences, provide book reviews, and offer recommendations. This community engagement fosters interaction and collaboration among readers.
+
+6.Stimulating cultural consumption: Building a second-hand book trading website can stimulate cultural consumption and encourage reading habits. It helps cultivate more readers and provides a sustainable market for the cultural industry.
+
 ## Architecture
 This project follows a client-server architecture, where the server is responsible for handling user requests and providing appropriate responses. The server is built using Java and Spring Boot, which provides a robust framework for building web applications. Gradle is used to manage dependencies and build the project. RESTful web services are used to communicate between the client and server.It follows a three-tier architecture and consists of the following modules:
 
@@ -34,20 +48,20 @@ This project follows a client-server architecture, where the server is responsib
 <img width="622" alt="restful2" src="https://github.com/FS23-ASE/ASE-server/assets/116545176/45c56fbb-8e0f-4c3e-8be7-a75c4d11bd14">
 
 
+## Docker
+The setup relies on the Docker.Please make sure you have downloaded it.Also,you can download docker compose using homebrew
+by running: brew install docker-compose
 
-
-## Set up local database and  link it to server program
-First download and install Mysql: https://dev.mysql.com/downloads/mysql/  
-
-Then log in Mysql in the terminal by entering: mysql -uroot -p
-
-After enter the password, enter: CREATE DATABASE ase;
-
-And you will have a database named ase which will store the book and user data
-
-You can link the database to the program easily by just enter your username and password in the /src/main/resources/application.properties
-
-After that the program is ready for use
+## How to run it
+To quickly build and test the docker images, a docker-compose.yml file is in the root directory. 
+In the root directory, start the deployment with:
+```bash
+docker compose up
+```
+To stop them, run:
+```bash
+docker compose down
+```
 
 ## Building with Gradle
 -   macOS: `./gradlew`
@@ -71,6 +85,43 @@ After that the program is ready for use
 ```bash
 ./gradlew test
 ```
+
+## Testing and continuous integration
+We have implemented a continuous integration (CI) flow in our project and utilized Travis CI and SonarCloud as essential tools for automated build, testing, and code quality analysis.
+
+Travis CI is a cloud-based CI tool that integrates with version control systems like GitHub, enabling automatic triggering of the build process. We stored the project's code in a GitHub repository and employed Travis CI to monitor changes in the repository. Whenever new code commits or pushes occur, Travis CI automatically triggers the build process.
+
+During the build stage, Travis CI performs the build and compilation based on the project's configuration file (e.g., .travis.yml). We specified Gradle as the build tool in the configuration file, defining the necessary dependencies and build tasks. Travis CI automatically downloads the required dependencies and executes the build command. If the build is successful, it generates an executable application or software package.
+
+Subsequently, Travis CI runs automated tests. We have developed unit tests within the project. Travis CI executes these tests according to the instructions in the configuration file and collects the test results. If the tests pass, it provides feedback and proceeds to the next stage.
+
+In the continuous integration flow, code quality analysis is crucial. To achieve static code analysis, We employed SonarCloud. SonarCloud performs static analysis of the code, detecting potential issues and violations such as code quality, security vulnerabilities, and technical debt. It offers detailed code quality metrics and suggestions to help us improve the code's quality and maintainability.
+
+The integration of Travis CI and SonarCloud allows us to continuously monitor and enhance code quality. After a successful build and passing tests, Travis CI sends the build report and test results to SonarCloud for code quality analysis. SonarCloud generates comprehensive reports and provides a visual dashboard to track code quality and potential issues.
+
+By utilizing Travis CI and SonarCloud, we have effectively implemented automated build, testing, and code quality analysis within the continuous integration flow. This enables us to develop and deliver high-quality software more rapidly and efficiently. Additionally, the continuous integration flow establishes a solid foundation for team collaboration and project management.
+
+## Database management
+
+ORM Framework: An ORM (Object-Relational Mapping) framework,Spring Data JPA, is used to simplify database operations and handle the mapping and persistence of objects to the database.
+
+Relational Database: User, book, cart, order and contact form data are stored in a relational database.
+
+1.User:
+id[long], username[string], email[string], password[string], address[string]
+
+2.Book:
+id[long], name[string], author[string], description[string], publisher[string], status[bool], image[BLOB], seller_id[long], buyer_id[long]
+
+3.Cart:
+id[long],books[List<Book>],quantity[int],prices[double],userId[long]
+
+4.Order:
+id[long], buyerId[long],sellerId[long], books[List{Book}], amount[double], date[Date], status[String (CANCELLED, SHIPPED, RECEIVED, PAID)]
+
+5.Contact Form:
+id[long], sender[long], accepter[long], orderId[long], msg[String]
+
 
 
 
