@@ -164,7 +164,6 @@ public class BookController {
                 log.info("Successfully uploaded to S3!");
 
             } catch (SdkClientException | IOException e) {
-                e.printStackTrace();
                 log.error(e.getMessage());
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to upload book image to S3 Bucket");
             }
