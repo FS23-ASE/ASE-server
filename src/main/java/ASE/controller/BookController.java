@@ -113,7 +113,6 @@ public class BookController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Can't find user!");
         }
         if (image != null) {
-            String fileName = StringUtils.cleanPath(image.getOriginalFilename());
             String uploadDir = "book-photos/" + id;
             File uploadDirPath = new File(uploadDir);
             if (!uploadDirPath.exists()) {
