@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DataJpaTest
 @Nested
-public class OrderRepositoryIntegrationTest {
+class OrderRepositoryIntegrationTest {
     @Autowired
     private TestEntityManager entityManager;
 
@@ -27,7 +27,7 @@ public class OrderRepositoryIntegrationTest {
 
 
     @Test
-    public void findByBuyerId_success() {
+    void findByBuyerId_success() {
         Order order=new Order();
         order.setBuyerId(1L);
         order.setDate("1");
@@ -46,7 +46,7 @@ public class OrderRepositoryIntegrationTest {
     }
 
     @Test
-    public void findBySellerId_success() {
+    void findBySellerId_success() {
         Order order=new Order();
         order.setSellerId(1L);
         order.setDate("1");

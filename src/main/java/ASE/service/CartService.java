@@ -167,6 +167,7 @@ public class CartService {
             order.setDate(format);
             order.setBooks(sellerBooks);
 
+            orderService.createOrder(order);
 
         }
     }
