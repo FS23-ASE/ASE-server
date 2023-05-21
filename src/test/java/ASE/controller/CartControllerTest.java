@@ -3,6 +3,7 @@ package ASE.controller;
 import ASE.entity.Book;
 import ASE.entity.Cart;
 import ASE.rest.dto.BookPostDTO;
+import ASE.rest.dto.CartPostDTO;
 import ASE.service.BookService;
 import ASE.service.CartService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -63,6 +64,35 @@ public class CartControllerTest {
                 .andExpect(jsonPath("$.userId", is((cart1.getUserId().intValue()))));
 
 
+    }
+
+    @Test
+    public void testAddBookToCart(){
+
+    }
+
+    @Test
+    public void testCreateCart() throws Exception{
+
+        Cart cart=new Cart();
+        cart.setId(1L);
+        cart.setUserId(2L);
+
+        CartPostDTO cartPostDTO=new CartPostDTO();
+        cartPostDTO.setUserId(2L);
+
+        given(cartService.createCart(Mockito.any())).willReturn(cart);
+
+        // when/then -> do the request + validate the result
+        MockHttpServletRequestBuilder postRequest = post("/cart")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(cartPostDTO));
+
+        // then
+        mockMvc.perform(postRequest)
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id", is(cart.getId().intValue())))
+                .andExpect(jsonPath("$.userId", is(cart.getUserId().intValue())));
     }
 
 
