@@ -2,6 +2,14 @@
 
 This is the server-side code for a Book E-Commerce web application developed by Group ASE as part of the FS23 Advanced Software Engineering course.
 
+
+## SonarCloud Badges:
+
+[![Bugs](https://sonarcloud.io/project/overview?id=FS23-ASE_ASE-server&metric=bugs)](https://sonarcloud.io/project/overview?id=FS23-ASE_ASE-server)
+[![Code Smells](https://sonarcloud.io/project/overview?id=FS23-ASE_ASE-server&metric=code_smells)](https://sonarcloud.io/project/overview?id=FS23-ASE_ASE-server)
+[![Coverage](https://sonarcloud.io/project/overview?id=FS23-ASE_ASE-server)](https://sonarcloud.io/project/overview?id=FS23-ASE_ASE-server)
+[![Vulnerabilities](https://sonarcloud.io/project/overview?id=FS23-ASE_ASE-server)](https://sonarcloud.io/project/overview?id=FS23-ASE_ASE-server)
+
 ## Technologies Used
 
 The project is built using the following technologies:
@@ -53,8 +61,44 @@ The setup relies on the Docker.Please make sure you have downloaded it.Also,you 
 by running: brew install docker-compose
 
 ## How to run it
+
+### LocalStack
+
+Here are the steps if you want to test this application using LocalStack.
+
+Run LocalStack S3 Container:
+Execute the following command to start the LocalStack S3 container:
+
+```docker run --rm -it -p 4566:4566 -p 8888:8080 localstack/localstack```
+
+This command will download the LocalStack Docker image (if not already downloaded) and start the container. The S3 service will be available at http://localhost:4566.
+
+Configure AWS CLI:
+If you don't have the AWS Command Line Interface (CLI) installed, download and install it from the official AWS CLI website.
+Execute the following command to configure the AWS CLI with LocalStack credentials:
+
+```aws configure --profile localstack```
+
+You will be prompted to enter the Access Key ID, Secret Access Key, and region. For LocalStack, you can use any dummy values as the actual AWS credentials are not required. However, make sure to provide valid input to proceed with the configuration.
+
+Create an S3 Bucket:
+Execute the following command to create an S3 bucket using LocalStack:
+
+```aws --endpoint-url=http://localhost:4566 s3 mb s3://images```
+
+This command will create an S3 bucket named "images" in LocalStack.
+
+Also add your_access_key and your_secret_key in the docker-compose.yml file.
+
+### Deploy
+
 To quickly build and test the docker images, a docker-compose.yml file is in the root directory. 
 In the root directory, start the deployment with:
+
+```bash
+./gradlew bootJar
+```
+
 ```bash
 docker compose up
 ```
