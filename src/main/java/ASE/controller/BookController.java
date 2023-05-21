@@ -166,7 +166,7 @@ public class BookController {
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:4566", region))
                 .withPathStyleAccessEnabled(true)
                 .build();
-        S3Object s3Object = s3Client.getObject("images", id.toString());
+        S3Object s3Object = s3Client.getObject(bucketName, id.toString());
         InputStream inputStream = s3Object.getObjectContent();
 
         Resource resource;
