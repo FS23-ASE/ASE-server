@@ -58,9 +58,13 @@ by running: brew install docker-compose
 The structure of this project is:
 
 - Root
+
   |- ASE-client
+  
   |- ASE-server
+  
   |- docker-compose.yml
+  
 
 ### LocalStack
 
@@ -103,9 +107,6 @@ In the server folder, run:
 
 In the root directory, start the deployment with:
 
-```bash
-./gradlew bootJar
-```
 
 ```bash
 docker compose up
