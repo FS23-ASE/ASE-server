@@ -14,7 +14,7 @@ Gradle
 
 RESTful web services
 
-MySQL (for data storage)
+H2Database (for data storage)
 
 Docker (for containerization and deployment)
 
@@ -85,6 +85,12 @@ docker compose down
 ```bash
 ./gradlew test
 ```
+
+
+## Organization
+[ORGANIZATION.md](ORGANIZATION.md)
+
+
 
 ## Testing and continuous integration
 We have implemented a continuous integration (CI) flow in our project and utilized Travis CI and SonarCloud as essential tools for automated build, testing, and code quality analysis.
