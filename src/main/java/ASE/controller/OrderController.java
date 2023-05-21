@@ -92,6 +92,16 @@ public class OrderController {
         System.out.println(order.getStatus());
     }
 
+    @PutMapping("/order/shipped/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public void shipOrder(@PathVariable("id") Long id){
+        Order order = orderService.getOrderById(id);
+        System.out.println(order.getStatus());
+        orderService.setStatus(id,"SHIPPED");
+        System.out.println(order.getStatus());
+    }
+
     @PutMapping("/order/cancel/{id}")
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
